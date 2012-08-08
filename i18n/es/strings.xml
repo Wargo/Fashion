@@ -9,4 +9,7 @@
 	<string name="Error">Error</string>
 	<string name="Debes seleccionar el número de estrellas">Debes seleccionar el número de estrellas</string>
 	<string name="Siguiente">Siguiente</string>
+	<string name="Promedio">Promedio</string>
+	<string name="Núm. votos">Núm. votos</string>
+	<string name="Tu voto">Tu voto</string>
 </resources>

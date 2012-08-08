@@ -4,6 +4,8 @@ function content() {
 	
 	var image = Ti.UI.createImageView({
 		right:margin,left:margin,top:margin*4,bottom:margin*4,
+		//width:300,
+		//height:360,
 		image:images[random].image,
 		preventDefaultImage:true,
 		//backgroundColor:'#FFF',
@@ -22,21 +24,23 @@ function content() {
 	scrollView.add(image);
 	
 	image.addEventListener('singletap', function(e) {
-		if (tapped == false) {
-			scrollView.maxZoomScale = 10;
-			tapped = true;
-			header.animate({top:-40});
-			footer.animate({bottom:-40});
-			scrollView.animate({backgroundColor:'#000'});
-			e.source.animate({top:0,left:0,bottom:0,right:0});
-		} else {
-			scrollView.maxZoomScale = 1;
-			scrollView.zoomScale = 1;
-			tapped = false;
-			header.animate({top:0});
-			footer.animate({bottom:0});
-			scrollView.animate({backgroundColor:'transparent'});
-			e.source.animate({top:margin,left:margin,bottom:margin,right:margin});
+		if (canTap) {
+			if (tapped == false) {
+				scrollView.maxZoomScale = 10;
+				tapped = true;
+				header.animate({top:-40});
+				footer.animate({bottom:-40});
+				scrollView.animate({backgroundColor:'#000'});
+				e.source.animate({top:0,left:0,bottom:0,right:0});
+			} else {
+				scrollView.maxZoomScale = 1;
+				scrollView.zoomScale = 1;
+				tapped = false;
+				header.animate({top:0});
+				footer.animate({bottom:0});
+				scrollView.animate({backgroundColor:'transparent'});
+				e.source.animate({top:margin,left:margin,bottom:margin,right:margin});
+			}
 		}
 	});
 	

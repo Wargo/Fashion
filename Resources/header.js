@@ -50,13 +50,16 @@ function showHeader() {
 	
 	var vote = Ti.UI.createButton({
 		title:L('Vótame'),
-		right:20
+		right:20,
+		height:30
 	});
 	
 	vote.addEventListener('singletap', function() {
 		if (voted) {
+			vote.enabled = false;
+			canTap = false;
 			var results = require('results');
-			results();
+			results(vote);
 			voted = false;
 		} else {
 			var alert = Ti.UI.createAlertDialog({

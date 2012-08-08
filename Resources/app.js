@@ -1,6 +1,9 @@
+//require('ti.viewshadow');
 var showHeader = require('header');
 var content = require('content');
 var showFooter = require('footer');
+
+var canTap = true;
 
 var win = Ti.UI.createWindow({
 	backgroundImage:'images/background.png'
@@ -19,7 +22,8 @@ var images = [
 var random = Math.round(Math.random() * (images.length - 1));
 
 var loading = Ti.UI.createActivityIndicator({
-	message:L('Cargando nueva imagen')
+	message:L('Cargando nueva imagen'),
+	color:'#FFF'
 });
 win.add(loading);
 
