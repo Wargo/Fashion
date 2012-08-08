@@ -7,9 +7,11 @@ function showFooter() {
 		zIndex:100
 	});
 	var tools = Ti.UI.createImageView({
-		image:'images/tools.png',
-		left:10
+		height:40,
+		width:50,
+		left:0
 	});
+	tools.add(Ti.UI.createImageView({image:'images/tools.png'}));
 	var options = require('options');
 	tools.addEventListener('singletap', function() {
 		optionsView = options(optionsView, tools);

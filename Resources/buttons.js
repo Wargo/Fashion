@@ -15,11 +15,13 @@ function buttons(view) {
 			button1._text.color = '#4F1722';
 			button1._text.shadowColor = '#FFC7D2';
 			button1.backgroundColor = 'transparent';
+			button1.opacity = 1;
 		} else {
 			button1._selected = true;
 			button1._text.color = '#FFC7D2';
 			button1._text.shadowColor = '#4F1722';
 			button1.backgroundColor = '#BC4159';
+			button1.opacity = 0.8;
 		}
 	});
 	button2.addEventListener('singletap', function() {
@@ -28,11 +30,13 @@ function buttons(view) {
 			button2._text.color = '#4F1722';
 			button2._text.shadowColor = '#FFC7D2';
 			button2.backgroundColor = 'transparent';
+			button2.opacity = 1;
 		} else {
 			button2._selected = true;
 			button2._text.color = '#FFC7D2';
 			button2._text.shadowColor = '#4F1722';
 			button2.backgroundColor = '#BC4159';
+			button2.opacity = 0.8;
 		}
 	});
 	

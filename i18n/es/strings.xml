@@ -4,4 +4,8 @@
 	<string name="Hombre">Hombre</string>
 	<string name="Mujer">Mujer</string>
 	<string name="Guardar">Guardar</string>
+	<string name="Cargando nueva imagen">Cargando nueva imagen</string>
+	<string name="Configuración">Configuración</string>
+	<string name="Error">Error</string>
+	<string name="Debes seleccionar el número de estrellas">Debes seleccionar el número de estrellas</string>
 </resources>

@@ -3,8 +3,20 @@ function content() {
 	var tapped = false;
 	
 	var image = Ti.UI.createImageView({
-		right:margin,left:margin,top:margin,bottom:margin,
-		image:'http://www.tuentifotos.com/media/fotos/Chica_Guapa_En_La_Playa.jpg'
+		right:margin,left:margin,top:margin*4,bottom:margin*4,
+		image:images[random].image,
+		preventDefaultImage:true,
+		//backgroundColor:'#FFF',
+		//borderColor:'#FFF',
+		//borderWidth:5
+	});
+	var loading = Ti.UI.createActivityIndicator({
+		message:L('Cargando nueva imagen')
+	});
+	image.add(loading);
+	loading.show();
+	image.addEventListener('load', function() {
+		loading.hide();
 	});
 	var scrollView = Ti.UI.createScrollView({
 		maxZoomScale: 1, // 10
@@ -22,6 +34,7 @@ function content() {
 			e.source.animate({top:0,left:0,bottom:0,right:0});
 		} else {
 			scrollView.maxZoomScale = 1;
+			scrollView.zoomScale = 1;
 			tapped = false;
 			header.animate({top:0});
 			footer.animate({bottom:0});
@@ -31,5 +44,7 @@ function content() {
 	});
 	
 	win.add(scrollView);
+	
+	return image;
 }
 module.exports = content;

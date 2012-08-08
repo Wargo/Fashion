@@ -58,20 +58,43 @@ function button(text, positionX, positionY) {
 			var select = Ti.UI.createScrollableView({
 				views:views,
 				width:60,
-				top:40
+				top:10,
+				height:140
 			});
 			if (positionX == 'right') {
 				select.currentPage = 17;
 			} else {
 				select.currentPage = 7;
 			}
-			var next = Ti.UI.createImageView({
-				image:'images/next.png',
-				right:10
+			var next = Ti.UI.createView({
+				right:0,
+				top:0,
+				bottom:0,
+				width:40
 			});
-			var prev = Ti.UI.createImageView({
-				image:'images/prev.png',
-				left:10
+			next.add(Ti.UI.createImageView({image:'images/next.png'}));
+			var prev = Ti.UI.createView({
+				left:0,
+				top:0,
+				bottom:0,
+				width:40
+			});
+			prev.add(Ti.UI.createImageView({image:'images/prev.png'}));
+			next.addEventListener('touchstart', function() {
+				next.backgroundColor = '#BC4159';
+				next.opacity = 0.5;
+			});
+			next.addEventListener('touchend', function() {
+				next.backgroundColor = 'transparent';
+				next.opacity = 1;
+			});
+			prev.addEventListener('touchstart', function() {
+				prev.backgroundColor = '#BC4159';
+				prev.opacity = 0.5;
+			});
+			prev.addEventListener('touchend', function() {
+				prev.backgroundColor = 'transparent';
+				prev.opacity = 1;
 			});
 			next.addEventListener('singletap', function() {
 				if (select.currentPage < views.length - 1) {
