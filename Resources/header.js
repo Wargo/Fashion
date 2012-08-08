@@ -10,14 +10,19 @@ function showHeader() {
 	
 	var stars = Ti.UI.createView({
 		layout:'horizontal',
-		left:10,
+		left:5,
 		height:40
 	});
 	
 	view.add(stars);
 	
+	var separator = Ti.UI.createView({
+		width:1,
+		backgroundColor:'#BFB8B2',
+		left:10
+	});
+	
 	for (i = 0; i < 5; i ++) {
-		//eval("var star_" + i + " = Ti.UI.createImageView({image:'images/star_off.png', left:5});");
 		eval("var star_" + i + " = Ti.UI.createView({width:30,height:40});");
 		var star = eval("star_" + i);
 		star.i = i;
@@ -37,22 +42,21 @@ function showHeader() {
 				}
 			}
 		});
+		eval("stars._star_" + i + " = star_" + i);
 		stars.add(star);
 	}
 	
-	var label = Ti.UI.createLabel({
-		text:L('Vótame'),
-		right:20,
-		height:40
+	stars.add(separator);
+	
+	var vote = Ti.UI.createButton({
+		title:L('Vótame'),
+		right:20
 	});
 	
-	label.addEventListener('singletap', function() {
+	vote.addEventListener('singletap', function() {
 		if (voted) {
-			random = Math.round(Math.random() * (images.length - 1));
-			image.image = images[random].image;
-			for (j = 0; j < 5; j ++) {
-				eval("star_" + j + "._img.image = 'images/star_off.png';");
-			}
+			var results = require('results');
+			results();
 			voted = false;
 		} else {
 			var alert = Ti.UI.createAlertDialog({
@@ -64,7 +68,8 @@ function showHeader() {
 		}
 	});
 	
-	view.add(label);
+	view._stars = stars;
+	view.add(vote);
 	win.add(view);
 	
 	return view;

@@ -18,6 +18,11 @@ var images = [
 
 var random = Math.round(Math.random() * (images.length - 1));
 
+var loading = Ti.UI.createActivityIndicator({
+	message:L('Cargando nueva imagen')
+});
+win.add(loading);
+
 var headerConfig = Ti.UI.createView({
 	backgroundColor:'#F2F2F2',
 	height:40,

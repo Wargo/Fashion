@@ -17,6 +17,13 @@ function showFooter() {
 		optionsView = options(optionsView, tools);
 	});
 	
+	var separator = Ti.UI.createView({
+		width:1,
+		backgroundColor:'#BFB8B2',
+		left:50
+	});
+	
+	view.add(separator);
 	view.add(tools);
 	win.add(view);
 	

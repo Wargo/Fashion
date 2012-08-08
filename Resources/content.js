@@ -10,17 +10,14 @@ function content() {
 		//borderColor:'#FFF',
 		//borderWidth:5
 	});
-	var loading = Ti.UI.createActivityIndicator({
-		message:L('Cargando nueva imagen')
-	});
-	image.add(loading);
 	loading.show();
 	image.addEventListener('load', function() {
 		loading.hide();
 	});
 	var scrollView = Ti.UI.createScrollView({
 		maxZoomScale: 1, // 10
-		minZoomScale: 1
+		minZoomScale: 1,
+		width:320
 	});
 	scrollView.add(image);
 	
@@ -42,6 +39,8 @@ function content() {
 			e.source.animate({top:margin,left:margin,bottom:margin,right:margin});
 		}
 	});
+	
+	image._scrollView = scrollView;
 	
 	win.add(scrollView);
 	
