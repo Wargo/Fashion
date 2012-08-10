@@ -1,11 +1,13 @@
 function showHeader() {
-	var voted = false;
-	
 	var view = Ti.UI.createView({
-		backgroundColor:'#F2F2F2',
-		height:40,
-		top:0,
-		zIndex:100
+		//backgroundColor:'#F2F2F2',
+		backgroundColor:'transparent',
+		height:45,
+		top:-60,
+		width:210,
+		zIndex:100,
+		borderRadius:5,
+		opacity:0.8
 	});
 	
 	var stars = Ti.UI.createView({
@@ -23,57 +25,46 @@ function showHeader() {
 	});
 	
 	for (i = 0; i < 5; i ++) {
-		eval("var star_" + i + " = Ti.UI.createView({width:30,height:40});");
+		eval("var star_" + i + " = Ti.UI.createView({width:40,height:40});");
 		var star = eval("star_" + i);
 		star.i = i;
-		var img = Ti.UI.createImageView({image:'images/star_off.png'});
+		var img = Ti.UI.createImageView({image:'images/star_black.png'});
 		star.add(img);
 		star._img = img;
 		star.addEventListener('singletap', function(e) {
+			if (voted) {
+				return;
+			}
 			voted = true;
 			if (typeof e.source.i == 'undefined') {
 				e.source = e.source.parent;
 			}
 			for (j = 0; j < 5; j ++) {
 				if (j <= e.source.i) {
-					eval("star_" + j + "._img.image = 'images/star_on.png';");
+					eval("star_" + j + "._img.image = 'images/star_yellow.png';");
 				} else {
-					eval("star_" + j + "._img.image = 'images/star_off.png';");
+					eval("star_" + j + "._img.image = 'images/star_black.png';");
 				}
 			}
+			Ti.App.currentVote = e.source.i + 1;
+			toVote();
 		});
 		eval("stars._star_" + i + " = star_" + i);
 		stars.add(star);
 	}
 	
-	stars.add(separator);
-	
-	var vote = Ti.UI.createButton({
-		title:L('Vótame'),
-		right:20,
-		height:30
-	});
-	
-	vote.addEventListener('singletap', function() {
-		if (voted) {
-			vote.enabled = false;
-			canTap = false;
-			var results = require('results');
-			results(vote);
-			voted = false;
-		} else {
-			var alert = Ti.UI.createAlertDialog({
-				title:L('Error'),
-				message:L('Debes seleccionar el número de estrellas'),
-				ok:L('Ok')
-			});
-			alert.show();
-		}
-	});
+	//stars.add(separator);
 	
 	view._stars = stars;
-	view.add(vote);
+	//view.add(vote);
 	win.add(view);
+	
+	function toVote() {
+		canTap = false;
+		var results = require('results');
+		results();
+		//view.animate({top:-60, delay:500});
+	}
 	
 	return view;
 }

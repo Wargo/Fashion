@@ -6,13 +6,13 @@ function showFooter() {
 		bottom:0,
 		zIndex:100
 	});
-	var tools = Ti.UI.createImageView({
+	var tools = Ti.UI.createView({
 		height:40,
 		width:50,
 		left:0
 	});
-	tools.add(Ti.UI.createImageView({image:'images/tools.png'}));
-	var options = require('options');
+	tools.add(Ti.UI.createImageView({image:'images/tools_dark.png'}));
+	
 	tools.addEventListener('singletap', function() {
 		optionsView = options(optionsView, tools);
 	});
@@ -26,6 +26,8 @@ function showFooter() {
 	view.add(separator);
 	view.add(tools);
 	win.add(view);
+	
+	view._tools = tools;
 	
 	return view;
 }

@@ -34,9 +34,10 @@ function results(vote) {
 			var view = Ti.UI.createView({
 				backgroundColor:'#F2F2F2',
 				top:60,bottom:60,
-				width:130,
+				width:135,
 				left:400,
-				layout:'vertical'
+				layout:'vertical',
+				borderRadius:5
 			});
 			
 			var rating = Ti.UI.createLabel({
@@ -46,12 +47,12 @@ function results(vote) {
 				textAlign:'center',
 				color:'#333'
 			});
-			var m = 3;
+			var m = 5;
 			var block1 = Ti.UI.createView({
 				backgroundImage:'images/bg_white.png',
 				backgroundRepeat:true, // TODO da error en el log
 				height:40,
-				top:m*2,left:m,right:m
+				top:m,left:m,right:m
 			});
 			block1.add(rating);
 			
@@ -66,12 +67,12 @@ function results(vote) {
 				backgroundImage:'images/bg_white.png',
 				backgroundRepeat:true, // TODO da error en el log
 				height:40,
-				top:m*2,left:m,right:m
+				top:m,left:m,right:m
 			});
 			block2.add(num);
 			
 			var yourRating = Ti.UI.createLabel({
-				text:L('Tu voto') + '\r\n' + Math.round(Math.random() * 5 * Math.pow(10, 2)) / Math.pow(10, 2),
+				text:L('Tu voto') + '\r\n' + Ti.App.currentVote,
 				font:{fontSize:13,fontStyle:'italic'},
 				height:40,
 				textAlign:'center',
@@ -81,7 +82,7 @@ function results(vote) {
 				backgroundImage:'images/bg_white.png',
 				backgroundRepeat:true, // TODO da error en el log
 				height:40,
-				top:m*2,left:m,right:m
+				top:m,left:m,right:m
 			});
 			block3.add(yourRating);
 			
@@ -94,6 +95,23 @@ function results(vote) {
 			view.animate({left:190});
 			
 			image._scrollView.animate({left:-150});
+			//header.animate({left:-100});
+			header.animate({opacity:0});
+			
+			var continueSmallButton = Ti.UI.createView({
+				//backgroundColor:'#F2F2F2',
+				backgroundColor:'transparent',
+				height:40,
+				right:-75,
+				top:5,
+				width:60,
+				zIndex:100,
+				opacity:0.8,
+				borderRadius:5
+			});
+			continueSmallButton.add(Ti.UI.createImageView({image:'images/next_dark.png'}));
+			win.add(continueSmallButton);
+			continueSmallButton.animate({right:-5});
 			
 			var animate3 = Ti.UI.createAnimation({
 				left:50,
@@ -126,36 +144,57 @@ function results(vote) {
 			
 			continueButton.animate(animate3);
 			
-			win.add(continueButton);
+			//win.add(continueButton);
 			
 			continueButton.addEventListener('singletap', function() {
-				random = Math.round(Math.random() * (images.length - 1));
-				
-				image.image = images[random].image;
-				image.addEventListener('load', function() {
-					loading.hide();
-					// TODO aquí entra más de una vez, y no sé por qué
-				});
-				for (j = 0; j < 5; j ++) {
-					eval("header._stars._star_" + j + "._img.image = 'images/star_off.png';");
-				}
-				
-				image._scrollView.animate({left:0});
-				view.animate({opacity:0, left:400});
-				continueButton.animate({opacity:0, left: 400});
-				
-				loading.show();
-				
-				setTimeout(function() {
-					win.remove(showMessage);
-					win.remove(view);
-					win.remove(continueButton);
-				}, 300);
-				canTap = true;
-				vote.enabled = true;
+				toContinue(view, continueButton, continueSmallButton);
+			});
+			continueSmallButton.addEventListener('singletap', function() {
+				continueSmallButton.opacity = 0.7;
+				toContinue(view, continueButton, continueSmallButton);
 			});
 		})
 	});
+	
+	function toContinue(view, continueButton, continueSmallButton) {
+		//random = Math.round(Math.random() * (images.length - 1));
+
+		//image.image = '';
+		image._scrollView.remove(image._shadow);
+		getPhoto(Ti.App.current.id);
+				
+		//image.image = images[random].image;
+		image.opacity = 0;
+		image.addEventListener('load', function() {
+			image.opacity = 1;	
+			header.animate({opacity:0.8});
+			image._scrollView.add(image._shadow);
+			loading.hide();
+			// TODO aquí entra más de una vez, y no sé por qué
+		});
+		for (j = 0; j < 5; j ++) {
+			eval("header._stars._star_" + j + "._img.image = 'images/star_black.png';");
+		}
+		
+		image._scrollView.animate({left:0});
+		view.animate({opacity:0, left:400});
+		continueButton.animate({opacity:0, left: 400});
+		continueSmallButton.animate({right:-75});
+		//header.animate({left:55});
+		
+		loading.show();
+		
+		setTimeout(function() {
+			//header.animate({opacity:0.8});
+			win.remove(showMessage);
+			win.remove(view);
+			//win.remove(continueButton); // TODO porque ya no lo añado
+			win.remove(continueSmallButton);
+		}, 300);
+		canTap = true;
+		//vote.enabled = true;
+		voted = false;
+	}
 	
 }
 module.exports = results;

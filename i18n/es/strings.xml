@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 	<string name="Vótame">Vótame</string>
-	<string name="Hombre">Hombre</string>
-	<string name="Mujer">Mujer</string>
+	<string name="Chicos">Chicos</string>
+	<string name="Chicas">Chicas</string>
 	<string name="Guardar">Guardar</string>
 	<string name="Cargando nueva imagen">Cargando nueva imagen</string>
-	<string name="Configuración">Configuración</string>
+	<string name="¿Qué buscas?">¿Qué buscas?</string>
 	<string name="Error">Error</string>
 	<string name="Debes seleccionar el número de estrellas">Debes seleccionar el número de estrellas</string>
 	<string name="Siguiente">Siguiente</string>
 	<string name="Promedio">Promedio</string>
 	<string name="Núm. votos">Núm. votos</string>
 	<string name="Tu voto">Tu voto</string>
+	<string name="Ha ocurrido un error con la conexión">Ha ocurrido un error con la conexión</string>
+	<string name="Tienes que seleccionar qué es lo que buscas">Tienes que seleccionar qué es lo que buscas</string>
 </resources>

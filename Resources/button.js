@@ -46,7 +46,7 @@ function button(text, positionX, positionY) {
 			button.top = 40 + size;
 			buttonText.top = 30;
 			var views = [];
-			for (i = 13; i <= 80; i ++) {
+			for (i = min_age; i <= max_age; i ++) {
 				var age = Ti.UI.createView();
 				age.add(Ti.UI.createLabel({
 					text:i,
@@ -62,9 +62,16 @@ function button(text, positionX, positionY) {
 				height:140
 			});
 			if (positionX == 'right') {
+				var age = 'age_to'; 
 				select.currentPage = 17;
 			} else {
+				var age = 'age_from';
 				select.currentPage = 7;
+			}
+			if (Ti.App.Properties.getInt(age)) {
+				select.currentPage = Ti.App.Properties.getInt(age);
+			} else {
+				Ti.App.Properties.setInt(age, select.currentPage);
 			}
 			var next = Ti.UI.createView({
 				right:0,
@@ -99,11 +106,13 @@ function button(text, positionX, positionY) {
 			next.addEventListener('singletap', function() {
 				if (select.currentPage < views.length - 1) {
 					select.currentPage += 1;
+					Ti.App.Properties.setInt(age, select.currentPage);
 				}
 			});
 			prev.addEventListener('singletap', function() {
 				if (select.currentPage > 0) {
 					select.currentPage -= 1;
+					Ti.App.Properties.setInt(age, select.currentPage);
 				}
 			});
 			next.addEventListener('longpress', function(e) {
@@ -114,6 +123,7 @@ function button(text, positionX, positionY) {
 				}, 100);
 				e.source.addEventListener('touchend', function() {
 					clearInterval(interval);
+					Ti.App.Properties.setInt(age, select.currentPage);
 				});
 			});
 			prev.addEventListener('longpress', function(e) {
@@ -124,8 +134,14 @@ function button(text, positionX, positionY) {
 				}, 100);
 				e.source.addEventListener('touchend', function() {
 					clearInterval(interval);
+					Ti.App.Properties.setInt(age, select.currentPage);
 				});
 			});
+			
+			select.addEventListener('scroll', function() {
+				Ti.App.Properties.setInt(age, select.currentPage);
+			});
+			
 			button.add(select);
 			button.add(next);
 			button.add(prev);

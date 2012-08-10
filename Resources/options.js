@@ -1,6 +1,5 @@
 function options(view, tools) {
 	if (!view) {
-		headerConfig.animate({opacity:1});
 		tools.opacity = 0.5;
 		var view = Ti.UI.createView({
 			backgroundImage:'images/background.png',
@@ -12,6 +11,7 @@ function options(view, tools) {
 		buttons(view);
 		
 		view.animate({top:0, opacity:1});
+		headerConfig.animate({opacity:1, delay:300});
 		win.add(view);
 	} else {
 		headerConfig.animate({opacity:0});
@@ -26,6 +26,14 @@ function options(view, tools) {
 			win.remove(e.source._view);
 		});
 		view = null;
+		
+		if (Ti.App.result == 'ko' || Ti.App.result == '') {
+			if (Ti.App.current) {
+				getPhoto(Ti.App.current.id);
+			} else {
+				getPhoto();
+			}
+		}
 	}
 	return view;
 }
