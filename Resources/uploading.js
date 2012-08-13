@@ -5,7 +5,7 @@ function uploading(win, e, register) {
 		borderWidth:5,
 		borderColor:'#4F1722',
 		left:5,right:5,bottom:5,top:5,
-		layout:'vertical',
+		//layout:'vertical',
 		zIndex:250
 	});
 	
@@ -17,22 +17,23 @@ function uploading(win, e, register) {
 	});
 	
 	var photo = Ti.UI.createImageView({
-		image:e.media,
+		image:e.media
 	});
 	
 	photoView.add(photo);
 	
 	var upload = Ti.UI.createButton({
 		title:L('Subir foto'),
-		top:30
+		top:300
 	});
 	
 	view.add(photoView);
 	view.add(upload);
 	
+	var uploadImage = require('bbdd/uploadImage');
+	
 	upload.addEventListener('click', function() {
 		upload.enabled = false;
-		var uploadImage = require('bbdd/uploadImage');
 		uploadImage(e, view, register);
 	});
 	

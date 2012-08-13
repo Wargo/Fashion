@@ -109,6 +109,10 @@ function buttons(view) {
 		}
 		win.add(select);
 		select.animate({opacity:1});
+		
+		footer._tools.addEventListener('click', function() {
+			select.animate({opacity:0});
+		})
 	});
 	
 	view.add(button1);

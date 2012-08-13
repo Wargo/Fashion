@@ -22,6 +22,7 @@ function uploadImage(e, view, register) {
 			if (result['status'] == 'ok') {
 				//image.image = result['thumb'];
 				//image.big = result['image'];
+				//loader.hide();
 			} else {
 				Ti.App.alert(L('Error'), result['message']);
 			}

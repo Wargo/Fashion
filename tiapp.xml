@@ -17,10 +17,10 @@
     <id>net.artvisual.fashionme</id>
     <name>Fashione me</name>
     <version>1.0</version>
-    <publisher>albertsorianogarcia</publisher>
+    <publisher>Artvisual</publisher>
     <url>http://</url>
     <description>not specified</description>
-    <copyright>2012 by albertsorianogarcia</copyright>
+    <copyright>2012 by Artvisual</copyright>
     <icon>appicon.png</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
@@ -52,7 +52,7 @@
         <theme>default</theme>
     </mobileweb>
     <modules>
-    	<!--<module version="0.2" platform="iphone">ti.viewshadow</module>--> 
+        <!--<module version="0.2" platform="iphone">ti.viewshadow</module>-->
         <module platform="commonjs" version="2.0.5">ti.cloud</module>
     </modules>
 </ti:app>

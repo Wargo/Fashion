@@ -11,9 +11,16 @@ function showFooter() {
 		width:50,
 		left:0
 	});
-	tools.add(Ti.UI.createImageView({image:'images/tools_dark.png'}));	
+	tools.add(Ti.UI.createImageView({image:'images/tools_dark.png'}));
+	
+	var ok = Ti.UI.createView({height:40,width:50,left:0,opacity:0});
+	ok.add(Ti.UI.createLabel({text:L('Ok')}));
+	
 	tools.addEventListener('singletap', function() {
-		optionsView = options(optionsView, tools);
+		optionsView = options(optionsView, tools, ok);
+	});
+	ok.addEventListener('singletap', function() {
+		optionsView = options(optionsView, tools, ok);
 	});
 	
 	var takePhoto = Ti.UI.createView({
@@ -52,11 +59,13 @@ function showFooter() {
 	
 	view.add(separator);
 	view.add(tools);
+	view.add(ok);
 	view.add(separator2);
 	view.add(takePhoto);
 	win.add(view);
 	
 	view._tools = tools;
+	view._ok = ok;
 	
 	function gallery() {
 		Ti.Media.openPhotoGallery({

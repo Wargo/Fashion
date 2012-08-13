@@ -160,7 +160,7 @@ function results() {
 			
 			continueButton.animate(animate3);
 			
-			//win.add(continueButton);
+			win.add(continueButton);
 			
 			continueButton.addEventListener('singletap', function() {
 				toContinue(view, continueButton, continueSmallButton);
@@ -173,13 +173,9 @@ function results() {
 	});
 	
 	function toContinue(view, continueButton, continueSmallButton) {
-		//random = Math.round(Math.random() * (images.length - 1));
-
-		//image.image = '';
 		image._scrollView.remove(image._shadow);
 		getPhoto(Ti.App.current.id);
 				
-		//image.image = images[random].image;
 		image.opacity = 0;
 		image.addEventListener('load', function() {
 			image.opacity = 1;	
@@ -204,7 +200,7 @@ function results() {
 			//header.animate({opacity:0.8});
 			win.remove(showMessage);
 			win.remove(view);
-			//win.remove(continueButton); // TODO porque ya no lo añado
+			win.remove(continueButton);
 			win.remove(continueSmallButton);
 		}, 300);
 		canTap = true;

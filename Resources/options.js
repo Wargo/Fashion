@@ -1,6 +1,7 @@
-function options(view, tools) {
+function options(view, tools, ok) {
 	if (!view) {
-		tools.opacity = 0.5;
+		tools.opacity = 0;
+		ok.opacity = 1;
 		var view = Ti.UI.createView({
 			backgroundImage:'images/background.png',
 			top:Ti.Platform.displayCaps.platformHeight - 100,
@@ -16,6 +17,7 @@ function options(view, tools) {
 	} else {
 		headerConfig.animate({opacity:0});
 		tools.opacity = 1;
+		ok.opacity = 0;
 		var disappear = Ti.UI.createAnimation({
 			top:Ti.Platform.displayCaps.platformHeight,
 			opacity:0

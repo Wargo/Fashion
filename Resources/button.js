@@ -68,7 +68,7 @@ function button(text, positionX, positionY) {
 				var age = 'age_from';
 				select.currentPage = 7;
 			}
-			if (Ti.App.Properties.getInt(age)) {
+			if (Ti.App.Properties.getInt(age, null) != null) {
 				select.currentPage = Ti.App.Properties.getInt(age);
 			} else {
 				Ti.App.Properties.setInt(age, select.currentPage);

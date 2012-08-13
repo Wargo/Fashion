@@ -30,6 +30,41 @@ function photo(current_id) {
 		},
 		onerror: function(e) {
 			Ti.App.alert(L('Error'), L('Ha ocurrido un error con la conexión'));
+			loading.hide();
+			var refresh = Ti.UI.createView({
+				backgroundColor:'#000',
+				opacity:0,
+				width:180,
+				height:180,
+				borderRadius:15,
+				top:190
+			});
+			var wifi = Ti.UI.createImageView({image:'images/wifi.png', top:40});
+			win.add(wifi);
+			refresh.add(Ti.UI.createLabel({
+				text:L('Estamos tardando en cargar la imagen más de lo esperado'),
+				font:{fontSize:12},
+				top:10,left:10,right:10,
+				color:'#FFF',
+				textAlign:'center'
+			}));
+			refresh.add(Ti.UI.createImageView({image:'images/refresh.png', top:65}));
+			refresh.add(Ti.UI.createLabel({
+				text:L('Comprueba la cobertura o conéctate a una red Wi-Fi'),
+				font:{fontSize:12},
+				bottom:10,left:10,right:10,
+				color:'#FFF',
+				textAlign:'center'
+			}));
+			win.add(refresh);
+			refresh.animate({opacity:0.7});
+			refresh.addEventListener('singletap', function() {
+				loading.show();
+				win.remove(refresh);
+				win.remove(wifi);
+				client.open('POST', path);
+				send();
+			});
 		},
 		timeout: 15000
 	});
