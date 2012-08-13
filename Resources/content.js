@@ -44,7 +44,7 @@ function content() {
 		var appear = Ti.UI.createAnimation({opacity:0.7, delay:1000});
 		message.animate(appear);
 		appear.addEventListener('complete', function() {
-			message.animate({opacity:0, delay:4000});
+			message.animate({opacity:0, delay:3000});
 		});
 	});
 	

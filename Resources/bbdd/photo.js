@@ -12,16 +12,35 @@ function photo(current_id) {
 			} else {
 				Ti.App.alert(L('Error'), result.message);
 				loading.setMessage(L('No hay fotos nuevas'));
+				
+				var refresh = Ti.UI.createView({
+					backgroundColor:'#000',
+					opacity:0,
+					width:100,
+					height:100,
+					borderRadius:15,
+					top:120
+				});
+				refresh.add(Ti.UI.createImageView({image:'images/refresh.png'}));
+				refresh.addEventListener('singletap', function() {
+					loading.setMessage(L('Cargando nueva imagen'));
+					win.remove(refresh);
+					client.open('POST', path);
+					send();
+				});
+				refresh.animate({opacity:0.7});
+				win.add(refresh);
+				
 				var message = Ti.UI.createImageView({
-					image:'images/mssgs.png',
-					bottom:30,
-					left:30,
+					image:'images/help2.png',
+					bottom:35,
+					left:10,
 					zIndex:200,
 					opacity:0
 				});
-				message.add(Ti.UI.createLabel({top:20,font:{fontSize:13},text:L('Modificar filtros'), color:'#FFF'}));
+				message.add(Ti.UI.createLabel({top:15,font:{fontSize:13},text:L('Modificar filtros'), color:'#FFF'}));
 				win.add(message);
-				var appear = Ti.UI.createAnimation({opacity:1, delay:1000});
+				var appear = Ti.UI.createAnimation({opacity:0.7, delay:1000});
 				message.animate(appear);
 				appear.addEventListener('complete', function() {
 					message.animate({opacity:0, delay:4000});
