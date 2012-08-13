@@ -6,10 +6,26 @@ function photo(current_id) {
 			var result = eval('(' + this.responseText + ')');
 			Ti.App.result = result.status;
 			if (result.status == 'ok') {
+				loading.setMessage(L('Cargando nueva imagen'));
 				Ti.App.current = result.data;
 				image.image = Ti.App.current.url;
 			} else {
 				Ti.App.alert(L('Error'), result.message);
+				loading.setMessage(L('No hay fotos nuevas'));
+				var message = Ti.UI.createImageView({
+					image:'images/mssgs.png',
+					bottom:30,
+					left:30,
+					zIndex:200,
+					opacity:0
+				});
+				message.add(Ti.UI.createLabel({top:20,font:{fontSize:13},text:L('Modificar filtros'), color:'#FFF'}));
+				win.add(message);
+				var appear = Ti.UI.createAnimation({opacity:1, delay:1000});
+				message.animate(appear);
+				appear.addEventListener('complete', function() {
+					message.animate({opacity:0, delay:4000});
+				});
 			}
 		},
 		onerror: function(e) {
@@ -55,6 +71,7 @@ function photo(current_id) {
 					if (Ti.App.Properties.getBool('girls')) {
 						sex += '1';
 					}
+					headerConfig.animate({opacity:0});
 					send();
 				});
 			}

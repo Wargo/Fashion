@@ -34,6 +34,7 @@ function content() {
 	image.addEventListener('singletap', function(e) {
 		if (canTap) {
 			if (tapped == false) {
+				shadow.opacity = 0;
 				scrollView.maxZoomScale = 10;
 				tapped = true;
 				header.animate({top:-60});
@@ -41,6 +42,7 @@ function content() {
 				scrollView.animate({backgroundColor:'#000'});
 				e.source.animate({top:0,left:0,bottom:0,right:0});
 			} else {
+				shadow.opacity = 1;
 				scrollView.maxZoomScale = 1;
 				scrollView.zoomScale = 1;
 				tapped = false;

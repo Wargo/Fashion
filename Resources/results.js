@@ -1,4 +1,6 @@
-function results(vote) {
+function results() {
+	
+	var voting = require('bbdd/voting');
 	
 	var animation = Ti.UI.createAnimation({
 		top:200,
@@ -41,7 +43,7 @@ function results(vote) {
 			});
 			
 			var rating = Ti.UI.createLabel({
-				text:L('Promedio') + '\r\n' + Math.round(Math.random() * 5 * Math.pow(10, 2)) / Math.pow(10, 2),
+				//text:L('Promedio') + '\r\n' + Math.round(Math.random() * 5 * Math.pow(10, 2)) / Math.pow(10, 2),
 				font:{fontSize:13,fontStyle:'italic'},
 				height:40,
 				textAlign:'center',
@@ -57,7 +59,7 @@ function results(vote) {
 			block1.add(rating);
 			
 			var num = Ti.UI.createLabel({
-				text:L('Núm. votos') + '\r\n' + Math.round(Math.random() * 100),
+				//text:L('Núm. votos') + '\r\n' + Math.round(Math.random() * 100),
 				font:{fontSize:13,fontStyle:'italic'},
 				height:40,
 				textAlign:'center',
@@ -70,6 +72,8 @@ function results(vote) {
 				top:m,left:m,right:m
 			});
 			block2.add(num);
+			
+			voting(rating, num);
 			
 			var yourRating = Ti.UI.createLabel({
 				text:L('Tu voto') + '\r\n' + Ti.App.currentVote,

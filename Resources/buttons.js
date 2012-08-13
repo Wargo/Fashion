@@ -62,7 +62,7 @@ function buttons(view) {
 	if (Ti.App.Properties.getInt('country')) {
 		button6._text.text = Ti.App.countries[Ti.App.Properties.getInt('country') - 1].name;
 	} else {
-		Ti.App.Properties.setInt('country', 0);
+		Ti.App.Properties.setInt('country', 1);
 	}
 	
 	button6.addEventListener('singletap', function() {
