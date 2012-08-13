@@ -1,11 +1,11 @@
-function register(email, sex, country, year) {
-	var path = Ti.App.dataURL + 'register.php';
+function connect() {
+	var path = Ti.App.dataURL + 'connect.php';
 	var client = Ti.Network.createHTTPClient({
 		onload: function(e) {
 			Ti.API.error('success ' + this.responseText);
 			var result = eval('(' + this.responseText + ')');
 			if (result.status == 'ok') {
-				Ti.App.Properties.setBool('registered', true);
+				Ti.App.Properties.setInt('user_id', result.id);
 			} else {
 				Ti.App.alert(L('Error'), result.message);
 			}
@@ -18,11 +18,7 @@ function register(email, sex, country, year) {
 	
 	client.open('POST', path);
 	client.send({
-		user_id:Ti.App.Properties.getInt('user_id'),
-		email:email,
-		sex:sex,
-		country:country,
-		year:year
+		device:device
 	});
 }
-module.exports = register;
+module.exports = connect;

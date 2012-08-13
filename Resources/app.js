@@ -20,8 +20,8 @@ for (var c = 0; c < props.length; c ++) {
 if (!Ti.App.Properties.getInt('device')) {
 	var device = Math.round(Math.random() * 1000000000);
 	Ti.App.Properties.setInt('device', device);
-	var register = require('bbdd/register');
-	register();
+	var connect = require('bbdd/connect');
+	connect();
 }
 
 Ti.App.currentVote = 0;

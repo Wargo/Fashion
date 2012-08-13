@@ -42,8 +42,15 @@ function results() {
 				borderRadius:5
 			});
 			
+			var tempLoading1 = Ti.UI.createActivityIndicator({
+				style:Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
+			});
+			
+			var tempLoading2 = Ti.UI.createActivityIndicator({
+				style:Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
+			});
+			
 			var rating = Ti.UI.createLabel({
-				//text:L('Promedio') + '\r\n' + Math.round(Math.random() * 5 * Math.pow(10, 2)) / Math.pow(10, 2),
 				font:{fontSize:13,fontStyle:'italic'},
 				height:40,
 				textAlign:'center',
@@ -59,7 +66,6 @@ function results() {
 			block1.add(rating);
 			
 			var num = Ti.UI.createLabel({
-				//text:L('Núm. votos') + '\r\n' + Math.round(Math.random() * 100),
 				font:{fontSize:13,fontStyle:'italic'},
 				height:40,
 				textAlign:'center',
@@ -73,7 +79,7 @@ function results() {
 			});
 			block2.add(num);
 			
-			voting(rating, num);
+			voting(rating, num, tempLoading1, tempLoading2);
 			
 			var yourRating = Ti.UI.createLabel({
 				text:L('Tu voto') + '\r\n' + Ti.App.currentVote,
@@ -89,6 +95,12 @@ function results() {
 				top:m,left:m,right:m
 			});
 			block3.add(yourRating);
+			
+			block1.add(tempLoading1);
+			block2.add(tempLoading2);
+			
+			tempLoading1.show();
+			tempLoading2.show();
 			
 			view.add(block1);
 			view.add(block2);

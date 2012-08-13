@@ -15,4 +15,16 @@
 	<string name="Ha ocurrido un error con la conexión">Ha ocurrido un error con la conexión</string>
 	<string name="Tienes que seleccionar qué es lo que buscas">Tienes que seleccionar qué es lo que buscas</string>
 	<string name="No hay fotos nuevas">No hay fotos nuevas</string>
+	<string name="Elige de dónde quieres obtener la imagen">Elige de dónde quieres obtener la imagen</string>
+	<string name="Cámara">Cámara</string>
+	<string name="Galería">Galería</string>
+	<string name="Cancelar">Cancelar</string>
+	<string name="Ha ocurrido un error con la galería">Ha ocurrido un error con la galería</string>
+	<string name="Ha ocurrido un error con la cámara">Ha ocurrido un error con la cámara</string>
+	<string name="Antes de nada, necesitamos saber algo más sobre ti, sólo te llevará un minuto. Rellena los siguientes campos, por favor:">Antes de nada, necesitamos saber algo más sobre ti, sólo te llevará un minuto. Rellena los siguientes campos, por favor:</string>
+	<string name="Necesitamos tu email">Necesitamos tu email</string>
+	<string name="¿De qué año eres?">¿De qué año eres?</string>
+	<string name="¿De dónde eres?">¿De dónde eres?</string>
+	<string name="¿Chico o chica?">¿Chico o chica?</string>
+	<string name="Aceptar">Aceptar</string>
 </resources>
