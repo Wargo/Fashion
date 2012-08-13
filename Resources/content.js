@@ -31,6 +31,23 @@ function content() {
 	
 	loading.show();
 	
+	image.addEventListener('swipe', function(e) {
+		Ti.API.error(e.direction);
+		var message = Ti.UI.createImageView({
+			image:'images/help.png',
+			top:40,
+			zIndex:200,
+			opacity:0
+		});
+		message.add(Ti.UI.createLabel({top:25,font:{fontSize:13},text:L('Puntúa la foto'), color:'#FFF'}));
+		win.add(message);
+		var appear = Ti.UI.createAnimation({opacity:0.7, delay:1000});
+		message.animate(appear);
+		appear.addEventListener('complete', function() {
+			message.animate({opacity:0, delay:4000});
+		});
+	});
+	
 	image.addEventListener('singletap', function(e) {
 		if (canTap) {
 			if (tapped == false) {
