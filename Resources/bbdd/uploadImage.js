@@ -43,6 +43,7 @@ function uploadImage(e, view, register) {
 	client.open('POST', path);
 	client.send({
 		file:e.media,
+		//file:e,
 		user_id:Ti.App.Properties.getString('user_id')
 	});
 }

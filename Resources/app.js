@@ -49,7 +49,7 @@ Ti.App.current_photo = null;
 var getPhoto = require('bbdd/photo');
 
 var loading = Ti.UI.createActivityIndicator({
-	message:L('Cargando nueva imagen'),
+	message:L('Conectando...'),
 	color:'#FFF'
 });
 

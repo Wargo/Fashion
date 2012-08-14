@@ -31,9 +31,9 @@ function options(view, tools, ok) {
 		
 		if (Ti.App.result == 'ko' || Ti.App.result == '') {
 			if (Ti.App.current) {
-				getPhoto(Ti.App.current.id);
+				//getPhoto(Ti.App.current.id);
 			} else {
-				getPhoto();
+				//getPhoto();
 			}
 		}
 	}

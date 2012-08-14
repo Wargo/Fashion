@@ -41,6 +41,7 @@ function uploading(win, e, register) {
 	upload.addEventListener('click', function() {
 		upload.enabled = false;
 		uploadImage(e, view, register);
+		//uploadImage(photo.getImage(), view, register);
 	});
 	
 	cancel.addEventListener('click', function() {
