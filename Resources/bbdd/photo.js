@@ -102,13 +102,13 @@ function photo(current_id) {
 		var interval = setInterval(function() {
 			if (Ti.App.countries.length > 0) {
 				clearInterval(interval);
-				var toRemove = options(null, footer._tools);
 				footer._tools.opacity = 1;
 				footer.remove(footer._tools);
-				var ok = Ti.UI.createView({height:40,width:50,left:0});
-				ok.add(Ti.UI.createLabel({text:L('Ok')}));
-				footer.add(ok);
-				ok.addEventListener('singletap', function() {
+				var ok2 = Ti.UI.createView({height:40,width:50,left:0});
+				var toRemove = options(null, footer._tools, ok2);
+				ok2.add(Ti.UI.createLabel({text:L('Ok')}));
+				footer.add(ok2);
+				ok2.addEventListener('singletap', function() {
 					if (!Ti.App.Properties.getBool('boys') && !Ti.App.Properties.getBool('girls')) {
 						Ti.App.alert(L('Error'), L('Tienes que seleccionar qué es lo que buscas'));
 						return;
@@ -118,7 +118,8 @@ function photo(current_id) {
 						win.remove(toRemove);
 					}, 300);
 					footer.add(footer._tools);
-					footer.remove(ok);
+					footer.remove(ok2);
+					footer._tools.opacity = 1;
 					if (Ti.App.Properties.getBool('boys')) {
 						sex += '0';
 					}

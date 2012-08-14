@@ -16,8 +16,8 @@ function options(view, tools, ok) {
 		win.add(view);
 	} else {
 		headerConfig.animate({opacity:0});
-		tools.opacity = 1;
 		ok.opacity = 0;
+		tools.opacity = 1;
 		var disappear = Ti.UI.createAnimation({
 			top:Ti.Platform.displayCaps.platformHeight,
 			opacity:0

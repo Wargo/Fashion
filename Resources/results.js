@@ -1,6 +1,45 @@
 function results() {
 	
 	var voting = require('bbdd/voting');
+	var rating = Ti.UI.createLabel({
+		font:{fontSize:13,fontStyle:'italic'},
+		height:40,
+		textAlign:'center',
+		color:'#333'
+	});
+	var num = Ti.UI.createLabel({
+		font:{fontSize:13,fontStyle:'italic'},
+		height:40,
+		textAlign:'center',
+		color:'#333'
+	});
+	var tempLoading1 = Ti.UI.createActivityIndicator({
+		style:Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
+	});
+	var tempLoading2 = Ti.UI.createActivityIndicator({
+		style:Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
+	});
+	var m = 5;
+	var block1 = Ti.UI.createView({
+		backgroundImage:'images/bg_white.png',
+		backgroundRepeat:true, // TODO da error en el log
+		height:40,
+		top:m,left:m,right:m
+	});
+	block1.add(rating);
+	var block2 = Ti.UI.createView({
+		backgroundImage:'images/bg_white.png',
+		backgroundRepeat:true, // TODO da error en el log
+		height:40,
+		top:m,left:m,right:m
+	});
+	block2.add(num);
+	block1.add(tempLoading1);
+	block2.add(tempLoading2);
+	
+	tempLoading1.show();
+	tempLoading2.show();
+	voting(rating, num, tempLoading1, tempLoading2);
 	
 	var animation = Ti.UI.createAnimation({
 		top:200,
@@ -42,44 +81,7 @@ function results() {
 				borderRadius:5
 			});
 			
-			var tempLoading1 = Ti.UI.createActivityIndicator({
-				style:Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
-			});
-			
-			var tempLoading2 = Ti.UI.createActivityIndicator({
-				style:Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
-			});
-			
-			var rating = Ti.UI.createLabel({
-				font:{fontSize:13,fontStyle:'italic'},
-				height:40,
-				textAlign:'center',
-				color:'#333'
-			});
-			var m = 5;
-			var block1 = Ti.UI.createView({
-				backgroundImage:'images/bg_white.png',
-				backgroundRepeat:true, // TODO da error en el log
-				height:40,
-				top:m,left:m,right:m
-			});
-			block1.add(rating);
-			
-			var num = Ti.UI.createLabel({
-				font:{fontSize:13,fontStyle:'italic'},
-				height:40,
-				textAlign:'center',
-				color:'#333'
-			});
-			var block2 = Ti.UI.createView({
-				backgroundImage:'images/bg_white.png',
-				backgroundRepeat:true, // TODO da error en el log
-				height:40,
-				top:m,left:m,right:m
-			});
-			block2.add(num);
-			
-			voting(rating, num, tempLoading1, tempLoading2);
+			//voting(rating, num, tempLoading1, tempLoading2);
 			
 			var yourRating = Ti.UI.createLabel({
 				text:L('Tu voto') + '\r\n' + Ti.App.currentVote,
@@ -95,12 +97,6 @@ function results() {
 				top:m,left:m,right:m
 			});
 			block3.add(yourRating);
-			
-			block1.add(tempLoading1);
-			block2.add(tempLoading2);
-			
-			tempLoading1.show();
-			tempLoading2.show();
 			
 			view.add(block1);
 			view.add(block2);
