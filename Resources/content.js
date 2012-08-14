@@ -19,6 +19,7 @@ function content() {
 		header.animate({top:0, delay:500});
 		loading.hide();
 		scrollView.add(shadow);
+		canTap = true;
 	});
 	var scrollView = Ti.UI.createScrollView({
 		maxZoomScale: 1, // 10

@@ -24,17 +24,31 @@ function uploading(win, e, register) {
 	
 	var upload = Ti.UI.createButton({
 		title:L('Subir foto'),
-		top:300
+		top:300,
+		right:40
 	});
-	
+	var cancel = Ti.UI.createButton({
+		title:L('Cancelar'),
+		top:300,
+		left:40
+	});
 	view.add(photoView);
 	view.add(upload);
+	view.add(cancel);
 	
 	var uploadImage = require('bbdd/uploadImage');
 	
 	upload.addEventListener('click', function() {
 		upload.enabled = false;
 		uploadImage(e, view, register);
+	});
+	
+	cancel.addEventListener('click', function() {
+		if (register) {
+			win.close({right:400});
+		} else {
+			view.animate({opacity:0});
+		}
 	});
 	
 	view.animate({opacity:1});

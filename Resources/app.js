@@ -30,7 +30,7 @@ var showHeader = require('header');
 var content = require('content');
 var showFooter = require('footer');
 
-var canTap = true;
+var canTap = false;
 var voted = false;
 var min_age = 13;
 var max_age = 80;
@@ -70,3 +70,23 @@ footer = showFooter();
 getPhoto();
 
 win.open();
+
+/*
+ * Elementos que necesitan ser creados antes
+ */
+
+var refresh2 = Ti.UI.createView({
+	backgroundColor:'#000',
+	opacity:0,
+	width:100,
+	height:100,
+	borderRadius:15,
+	top:120
+});
+var messageFilter = Ti.UI.createImageView({
+	image:'images/help2.png',
+	bottom:35,
+	left:10,
+	zIndex:200,
+	opacity:0
+});

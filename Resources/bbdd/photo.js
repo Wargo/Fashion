@@ -1,4 +1,5 @@
 function photo(current_id) {
+	canTap = false;
 	var path = Ti.App.dataURL + 'photo.php';
 	var client = Ti.Network.createHTTPClient({
 		onload: function(e) {
@@ -9,42 +10,32 @@ function photo(current_id) {
 				loading.setMessage(L('Cargando nueva imagen'));
 				Ti.App.current = result.data;
 				image.image = Ti.App.current.url;
+				win.remove(refresh2); // TODO muestra warnings cuando no está todavía añadido
 			} else {
 				Ti.App.alert(L('Error'), result.message);
 				loading.setMessage(L('No hay fotos nuevas'));
 				
-				var refresh = Ti.UI.createView({
-					backgroundColor:'#000',
-					opacity:0,
-					width:100,
-					height:100,
-					borderRadius:15,
-					top:120
-				});
-				refresh.add(Ti.UI.createImageView({image:'images/refresh.png'}));
-				refresh.addEventListener('singletap', function() {
+				refresh2.add(Ti.UI.createImageView({image:'images/refresh.png'}));
+				refresh2.addEventListener('singletap', function() {
 					loading.setMessage(L('Cargando nueva imagen'));
-					win.remove(refresh);
+					win.remove(refresh2);
 					client.open('POST', path);
 					send();
 				});
-				refresh.animate({opacity:0.7});
-				win.add(refresh);
+				refresh2.animate({opacity:0.7});
+				if (refresh2.opacity == 0) {
+					win.add(refresh2);
+				}
 				
-				var message = Ti.UI.createImageView({
-					image:'images/help2.png',
-					bottom:35,
-					left:10,
-					zIndex:200,
-					opacity:0
-				});
-				message.add(Ti.UI.createLabel({top:15,font:{fontSize:13},text:L('Modificar filtros'), color:'#FFF'}));
-				win.add(message);
-				var appear = Ti.UI.createAnimation({opacity:0.7, delay:1000});
-				message.animate(appear);
-				appear.addEventListener('complete', function() {
-					message.animate({opacity:0, delay:4000});
-				});
+				messageFilter.add(Ti.UI.createLabel({top:15,font:{fontSize:13},text:L('Modificar filtros'), color:'#FFF'}));
+				if (messageFilter.opacity == 0) {
+					win.add(messageFilter);
+					var appear = Ti.UI.createAnimation({opacity:0.7, delay:1000});
+					messageFilter.animate(appear);
+					appear.addEventListener('complete', function() {
+						messageFilter.animate({opacity:0, delay:4000});
+					});
+				}
 			}
 		},
 		onerror: function(e) {
