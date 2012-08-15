@@ -63,6 +63,14 @@ function results() {
 	}));
 	win.add(showMessage);
 	
+	setTimeout(function() {
+		showMessage.setShadow({
+			shadowRadius:5,
+			shadowOpacity:0.5,
+			shadowOffset:{x:8, y:8}
+		});
+	}, 100);
+	
 	showMessage.animate(animation);
 	animation.addEventListener('complete', function() {
 		var animation2 = Ti.UI.createAnimation({
@@ -80,6 +88,13 @@ function results() {
 				layout:'vertical',
 				borderRadius:5
 			});
+			setTimeout(function() {
+				view.setShadow({
+					shadowRadius:5,
+					shadowOpacity:0.5,
+					shadowOffset:{x:8, y:8}
+				});
+			}, 100);
 			
 			//voting(rating, num, tempLoading1, tempLoading2);
 			
@@ -104,9 +119,18 @@ function results() {
 			
 			win.add(view);
 			
-			view.animate({left:190});
+			var tr1 = Ti.UI.iOS.create3DMatrix();
+			tr1.m34 = 1 / -1000;
+			tr1 = tr1.rotate(25,0,1,0);
 			
-			image._scrollView.animate({left:-150});
+			var tr2 = Ti.UI.iOS.create3DMatrix();
+			tr2.m34 = 1 / -1000;
+			tr2 = tr2.rotate(-25,0,1,0);
+			
+			view.animate({left:190, transform:tr2});
+			
+			image._scrollView.animate({left:-120, transform:tr1});
+			
 			//header.animate({left:-100});
 			header.animate({opacity:0});
 			
@@ -126,7 +150,7 @@ function results() {
 			continueSmallButton.animate({right:-5});
 			
 			var animate3 = Ti.UI.createAnimation({
-				left:50,
+				left:85,
 				delay:600,
 				opacity:1
 			});
@@ -134,24 +158,28 @@ function results() {
 			var continueButton = Ti.UI.createView({
 				backgroundImage:'images/bg_white.png',
 				backgroundRepeat:true,
-				width:220,
+				width:160,
 				height:70,
 				top:300,
 				left:-300,
 				opacity:0,
 				borderColor:'#FFF',
-				borderWidth:5
+				borderWidth:5,
+				zIndex:250
 			});
+			
+			setTimeout(function() {
+				continueButton.setShadow({
+					shadowRadius:5,
+					shadowOpacity:0.5,
+					shadowOffset:{x:8, y:8}
+				});
+			}, 100);
 			
 			continueButton.add(Ti.UI.createLabel({
 				text:L('Siguiente') + ' >>',
 				font:{fontStyle:'italic'},
 				color:'#333',
-				shadow:{
-				    shadowRadius:10,
-				    shadowOpacity:0.5,
-				    shadowOffset:{x:5, y:10}
-				}
 			}));
 			
 			continueButton.animate(animate3);
@@ -169,16 +197,34 @@ function results() {
 	});
 	
 	function toContinue(view, continueButton, continueSmallButton) {
-		image._scrollView.remove(image._shadow);
+		image._scrollView.setShadow({
+			shadowRadius:0,
+			shadowOpacity:0,
+			shadowOffset:{x:0, y:0}
+		});
+		
+		var tr = Ti.UI.iOS.create3DMatrix();
+		//tr.m34 = 1 / -1000;
+		tr = tr.rotate(0,0,1,0);
+		
+		//image.animate({transition:tr});
+		
+		//image._scrollView.remove(image._shadow);
 		getPhoto(Ti.App.current.id);
 				
 		image.opacity = 0;
 		image.addEventListener('load', function() {
-			image.opacity = 1;	
+			image.opacity = 1;
+			image._scrollView.transform = tr;
 			header.animate({opacity:0.8});
-			image._scrollView.add(image._shadow);
+			//image._scrollView.add(image._shadow);
 			loading.hide();
 			// TODO aquí entra más de una vez, y no sé por qué
+			image._scrollView.setShadow({
+				shadowRadius:5,
+				shadowOpacity:0.5,
+				shadowOffset:{x:8, y:8}
+			});
 		});
 		for (j = 0; j < 5; j ++) {
 			eval("header._stars._star_" + j + "._img.image = 'images/star_black.png';");

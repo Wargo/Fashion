@@ -15,18 +15,24 @@ function content() {
 		zIndex:1
 	});
 	
-	image.addEventListener('load', function() {
-		header.animate({top:0, delay:500});
-		loading.hide();
-		scrollView.add(shadow);
-		canTap = true;
-	});
 	var scrollView = Ti.UI.createScrollView({
 		maxZoomScale: 1, // 10
 		minZoomScale: 1,
 		width:320
 	});
 	
+	image.addEventListener('load', function() {
+		header.animate({top:0, delay:500});
+		loading.hide();
+		//scrollView.add(shadow);
+		canTap = true;
+		scrollView.setShadow({
+			shadowRadius:5,
+			shadowOpacity:0.5,
+			shadowOffset:{x:8, y:8}
+		});
+	});
+
 	scrollView.add(image);
 	scrollView.add(loading);
 	

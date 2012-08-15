@@ -1,5 +1,12 @@
-//require('ti.viewshadow');
+require('ti.viewshadow');
 Ti.App.dataURL = 'http://www.servidordeprueba.net/webs/fashion/';
+
+
+Ti.App.Properties.setBool('girls', true);
+Ti.App.Properties.setInt('age_from', 0);
+Ti.App.Properties.setInt('age_to', 60);
+Ti.App.Properties.setInt('country', 1);
+
 
 function myAlert(title, text) {
 	var alert = Ti.UI.createAlertDialog({

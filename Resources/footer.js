@@ -17,7 +17,8 @@ function showFooter() {
 	ok.add(Ti.UI.createLabel({text:L('Ok')}));
 	
 	tools.addEventListener('singletap', function() {
-		optionsView = options(optionsView, tools, ok);
+		alert('Deshabilitado temporalmente...')
+		//optionsView = options(optionsView, tools, ok);
 	});
 	ok.addEventListener('singletap', function() {
 		optionsView = options(optionsView, tools, ok);
