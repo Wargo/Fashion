@@ -71,6 +71,8 @@ function results() {
 		});
 	}, 100);
 	
+	footer.animate({bottom:-40});
+	
 	showMessage.animate(animation);
 	animation.addEventListener('complete', function() {
 		var animation2 = Ti.UI.createAnimation({
@@ -197,10 +199,12 @@ function results() {
 	});
 	
 	function toContinue(view, continueButton, continueSmallButton) {
+		footer.animate({bottom:0});
+		
 		image._scrollView.setShadow({
-			shadowRadius:0,
-			shadowOpacity:0,
-			shadowOffset:{x:0, y:0}
+			//shadowRadius:0,
+			//shadowOpacity:0,
+			//shadowOffset:{x:0, y:0}
 		});
 		
 		var tr = Ti.UI.iOS.create3DMatrix();
@@ -220,7 +224,7 @@ function results() {
 			//image._scrollView.add(image._shadow);
 			loading.hide();
 			// TODO aquí entra más de una vez, y no sé por qué
-			image._scrollView.setShadow({
+			image.setShadow({
 				shadowRadius:5,
 				shadowOpacity:0.5,
 				shadowOffset:{x:8, y:8}

@@ -5,7 +5,7 @@ function showHeader() {
 		height:45,
 		top:-60,
 		width:210,
-		zIndex:100,
+		zIndex:1000,
 		borderRadius:5,
 		opacity:0.8
 	});

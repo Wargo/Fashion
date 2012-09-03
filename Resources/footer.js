@@ -4,7 +4,7 @@ function showFooter() {
 		backgroundColor:'#F2F2F2',
 		height:40,
 		bottom:0,
-		zIndex:100
+		zIndex:1000
 	});
 	var tools = Ti.UI.createView({
 		height:40,
@@ -17,8 +17,8 @@ function showFooter() {
 	ok.add(Ti.UI.createLabel({text:L('Ok')}));
 	
 	tools.addEventListener('singletap', function() {
-		alert('Deshabilitado temporalmente...')
-		//optionsView = options(optionsView, tools, ok);
+		//alert('Deshabilitado temporalmente...');
+		optionsView = options(optionsView, tools, ok);
 	});
 	ok.addEventListener('singletap', function() {
 		optionsView = options(optionsView, tools, ok);

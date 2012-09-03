@@ -1,12 +1,12 @@
 require('ti.viewshadow');
 Ti.App.dataURL = 'http://www.servidordeprueba.net/webs/fashion/';
 
-
+/*
 Ti.App.Properties.setBool('girls', true);
 Ti.App.Properties.setInt('age_from', 0);
 Ti.App.Properties.setInt('age_to', 60);
 Ti.App.Properties.setInt('country', 1);
-
+*/
 
 function myAlert(title, text) {
 	var alert = Ti.UI.createAlertDialog({
@@ -64,7 +64,7 @@ var headerConfig = Ti.UI.createView({
 	backgroundColor:'#F2F2F2',
 	height:40,
 	top:0,
-	zIndex:150,
+	zIndex:1001,
 	opacity:0
 });
 headerConfig.add(Ti.UI.createLabel({text:L('¿Qué buscas?')}));
