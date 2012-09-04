@@ -1,4 +1,5 @@
 require('ti.viewshadow');
+require('ti.imagefactory');
 Ti.App.dataURL = 'http://www.servidordeprueba.net/webs/fashion/';
 
 /*
