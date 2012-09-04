@@ -6,7 +6,7 @@ function uploading(win, e, register) {
 		borderColor:'#4F1722',
 		left:5,right:5,bottom:5,top:5,
 		//layout:'vertical',
-		zIndex:250
+		zIndex:2500
 	});
 	
 	var photoView = Ti.UI.createView({
