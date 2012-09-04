@@ -1,6 +1,6 @@
 function content() {
-	var marginW = 30;
-	var marginH = 50;
+	var marginW = 5;
+	var marginH = 45;
 	var tapped = false;
 	
 	var image = Ti.UI.createImageView({
@@ -9,19 +9,14 @@ function content() {
 		preventDefaultImage:true,
 		zIndex:2
 	});
-
-	image.image = ImageFactory.imageAsResized(image.image, {
-		width:200, height:350, quality:ImageFactory.QUALITY_HIGH, hires:true
-	});
 	
 	var scrollView = Ti.UI.createScrollView({
 		maxZoomScale: 1, // 10
 		minZoomScale: 1,
 		width:320
 	});
-	
+
 	image.addEventListener('load', function() {
-		header.animate({top:0, delay:500});
 		loading.hide();
 		//scrollView.add(shadow);
 		canTap = true;
@@ -30,8 +25,9 @@ function content() {
 			//shadowOpacity:0.5,
 			//shadowOffset:{x:8, y:8}
 		});
+		header.animate({top:0, delay:500});
 	});
-
+	
 	scrollView.add(image);
 	scrollView.add(loading);
 	

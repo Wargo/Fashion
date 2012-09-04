@@ -1,5 +1,5 @@
 require('ti.viewshadow');
-var ImageFactory = require('ti.imagefactory');
+//var ImageFactory = require('ti.imagefactory');
 Ti.App.dataURL = 'http://www.servidordeprueba.net/webs/fashion/';
 
 /*
@@ -95,6 +95,6 @@ var messageFilter = Ti.UI.createImageView({
 	image:'images/help2.png',
 	bottom:35,
 	left:10,
-	zIndex:200,
+	zIndex:1200,
 	opacity:0
 });

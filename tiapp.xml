@@ -53,6 +53,7 @@
     </mobileweb>
     <modules>
         <module version="0.3" platform="iphone">ti.viewshadow</module>
+        <!--<module version="1.1" platform="iphone">ti.imagefactory</module>-->
         <module platform="commonjs" version="2.0.5">ti.cloud</module>
     </modules>
 </ti:app>
