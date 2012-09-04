@@ -7,12 +7,11 @@ function content() {
 		right:marginW,left:marginW,top:marginH,bottom:marginH,
 		//image:Ti.App.current_photo,
 		preventDefaultImage:true,
-		zIndex:2,
-		type:imagefactory.TRANSFORM_RESIZE,
-		options:{
-			width:200,
-			height:350
-		}
+		zIndex:2
+	});
+
+	image.image = ImageFactory.imageAsResized(image.image, {
+		width:200, height:350, quality:ImageFactory.QUALITY_HIGH, hires:true
 	});
 	
 	var scrollView = Ti.UI.createScrollView({
