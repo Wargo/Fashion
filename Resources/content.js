@@ -22,9 +22,9 @@ function content() {
 		//scrollView.add(shadow);
 		canTap = true;
 		image.setShadow({
-			shadowRadius:5,
-			shadowOpacity:0.5,
-			shadowOffset:{x:8, y:8}
+			//shadowRadius:5,
+			//shadowOpacity:0.5,
+			//shadowOffset:{x:8, y:8}
 		});
 	});
 
@@ -40,7 +40,7 @@ function content() {
 		opacity:0
 	});
 	win.add(message);
-	message.add(Ti.UI.createLabel({top:25,font:{fontSize:13},text:L('Puntúa la foto'), color:'#FFF'}));
+	message.add(Ti.UI.createLabel({top:25,font:{fontSize:13},text:L('swipe_text'), color:'#FFF'}));
 	var appear = Ti.UI.createAnimation({opacity:0.7, delay:1000});
 	appear.addEventListener('complete', function() {
 		message.animate({opacity:0, delay:3000});

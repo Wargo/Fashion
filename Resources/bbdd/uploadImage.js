@@ -7,7 +7,7 @@ function uploadImage(e, view, register) {
 		value:0,
 		style:Titanium.UI.iPhone.ProgressBarStyle.PLAIN,
 		top:350,
-		message:L('Subiendo imagen...'),
+		message:L('uploading'),
 		font:{fontSize:12, fontWeight:'bold'},
 		color:'#888'
 	});
@@ -24,7 +24,7 @@ function uploadImage(e, view, register) {
 				//image.big = result['image'];
 				//loader.hide();
 			} else {
-				Ti.App.alert(L('Error'), result['message']);
+				Ti.App.alert(L('txt_error'), result['message']);
 			}
 			if (register) {
 				win.close({right:400});
@@ -33,7 +33,7 @@ function uploadImage(e, view, register) {
 			}
 		},
 		onerror: function() {
-			Ti.App.alert(L('Error'), L('Ha ocurrido un error con la conexión'));
+			Ti.App.alert(L('txt_error'), L('connection_error'));
 		},
 		onsendstream: function(e2) {
 			ind.value = e2.progress;

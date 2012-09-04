@@ -7,11 +7,11 @@ function countries() {
 			if (result.status == 'ok') {
 				Ti.App.countries = result.countries;
 			} else {
-				Ti.App.alert(L('Error'), result.message);
+				Ti.App.alert(L('txt_error'), result.message);
 			}
 		},
 		onerror: function(e) {
-			Ti.App.alert(L('Error'), L('Ha ocurrido un error con la conexión'));
+			Ti.App.alert(L('txt_error'), L('connection_error'));
 		},
 		timeout: 15000
 	});

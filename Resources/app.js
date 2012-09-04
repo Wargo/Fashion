@@ -12,7 +12,7 @@ function myAlert(title, text) {
 	var alert = Ti.UI.createAlertDialog({
 		title:title,
 		message:text,
-		ok:L('Ok')
+		ok:L('ok')
 	});
 	alert.show();
 }
@@ -56,7 +56,7 @@ Ti.App.current_photo = null;
 var getPhoto = require('bbdd/photo');
 
 var loading = Ti.UI.createActivityIndicator({
-	message:L('Conectando...'),
+	message:L('connecting'),
 	color:'#FFF'
 });
 
@@ -67,7 +67,7 @@ var headerConfig = Ti.UI.createView({
 	zIndex:1001,
 	opacity:0
 });
-headerConfig.add(Ti.UI.createLabel({text:L('¿Qué buscas?')}));
+headerConfig.add(Ti.UI.createLabel({text:L('title_options_page')}));
 win.add(headerConfig);
 
 header = showHeader();

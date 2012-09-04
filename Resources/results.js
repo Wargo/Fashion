@@ -57,7 +57,7 @@ function results() {
 	});
 	
 	showMessage.add(Ti.UI.createLabel({
-		text:L('Voto guardado'),
+		text:L('saved_message'),
 		font:{fontStyle:'italic'},
 		color:'#333'
 	}));
@@ -101,7 +101,7 @@ function results() {
 			//voting(rating, num, tempLoading1, tempLoading2);
 			
 			var yourRating = Ti.UI.createLabel({
-				text:L('Tu voto') + '\r\n' + Ti.App.currentVote,
+				text:L('txt_tu_voto') + '\r\n' + Ti.App.currentVote,
 				font:{fontSize:13,fontStyle:'italic'},
 				height:40,
 				textAlign:'center',
@@ -179,7 +179,7 @@ function results() {
 			}, 100);
 			
 			continueButton.add(Ti.UI.createLabel({
-				text:L('Siguiente') + ' >>',
+				text:L('txt_siguiente') + ' >>',
 				font:{fontStyle:'italic'},
 				color:'#333',
 			}));
@@ -225,9 +225,9 @@ function results() {
 			loading.hide();
 			// TODO aquí entra más de una vez, y no sé por qué
 			image.setShadow({
-				shadowRadius:5,
-				shadowOpacity:0.5,
-				shadowOffset:{x:8, y:8}
+				//shadowRadius:5,
+				//shadowOpacity:0.5,
+				//shadowOffset:{x:8, y:8}
 			});
 		});
 		for (j = 0; j < 5; j ++) {

@@ -14,7 +14,7 @@ function showFooter() {
 	tools.add(Ti.UI.createImageView({image:'images/tools_dark.png'}));
 	
 	var ok = Ti.UI.createView({height:40,width:50,left:0,opacity:0});
-	ok.add(Ti.UI.createLabel({text:L('Ok')}));
+	ok.add(Ti.UI.createLabel({text:L('ok')}));
 	
 	tools.addEventListener('singletap', function() {
 		//alert('Deshabilitado temporalmente...');
@@ -32,8 +32,8 @@ function showFooter() {
 	takePhoto.add(Ti.UI.createImageView({image:'images/camera.png'}));	
 	takePhoto.addEventListener('singletap', function() {
 		var dialog = Ti.UI.createOptionDialog({
-			title: L('Elige de dónde quieres obtener la imagen'),
-			options: [L('Cámara'), L('Galería'), L('Cancelar')],
+			title: L('txt_get_image'),
+			options: [L('txt_camara'), L('txt_galeria'), L('txt_cancelar')],
 			cancel:2
 		});
 		dialog.show();
@@ -79,9 +79,9 @@ function showFooter() {
 			},
 			error: function(e) {
 				var error = Ti.UI.createAlertDialog({
-					ok:L('Ok'),
-					title:L('Error'),
-					message:L('Ha ocurrido un error con la galería')
+					ok:L('ok'),
+					title:L('txt_error'),
+					message:L('gallery_error')
 				});
 				error.show();
 			},
@@ -100,9 +100,9 @@ function showFooter() {
 			},
 			error: function(e) {
 				var error = Ti.UI.createAlertDialog({
-					ok:L('Ok'),
-					title:L('Error'),
-					message:L('Ha ocurrido un error con la cámara')
+					ok:L('ok'),
+					title:L('txt_error'),
+					message:L('camera_error')
 				});
 				error.show();
 			},

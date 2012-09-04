@@ -9,7 +9,7 @@ var intro = Ti.UI.createView({
 });
 
 intro.add(Ti.UI.createLabel({
-	text:L('Antes de nada, necesitamos saber algo más sobre ti, sólo te llevará un minuto. Rellena los siguientes campos, por favor:'),
+	text:L('fill_fields'),
 	font:{fontSize:14},
 	left:10,right:5,top:5,bottom:5
 }));
@@ -23,7 +23,7 @@ var fields = Ti.UI.createView({
 });
 
 var email = Ti.UI.createTextField({
-	hintText:L('Necesitamos tu email'),
+	hintText:L('email_field'),
 	left:10,right:10,top:10,
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
 	autocapitalization:Ti.UI.TEXT_AUTOCAPITALIZATION_NONE,
@@ -32,7 +32,7 @@ var email = Ti.UI.createTextField({
 
 var year = Ti.UI.createTextField({
 	enabled:false,
-	hintText:L('¿De qué año eres?'),
+	hintText:L('year_field'),
 	left:10,right:10,top:10,
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
 	autocapitalization:Ti.UI.TEXT_AUTOCAPITALIZATION_NONE
@@ -40,7 +40,7 @@ var year = Ti.UI.createTextField({
 
 var country = Ti.UI.createTextField({
 	enabled:false,
-	hintText:L('¿De dónde eres?'),
+	hintText:L('country_field'),
 	left:10,right:10,top:10,
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
 	autocapitalization:Ti.UI.TEXT_AUTOCAPITALIZATION_NONE
@@ -48,7 +48,7 @@ var country = Ti.UI.createTextField({
 
 var sex = Ti.UI.createTextField({
 	enabled:false,
-	hintText:L('¿Chico o chica?'),
+	hintText:L('sex_field'),
 	left:10,right:10,top:10,
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
 	autocapitalization:Ti.UI.TEXT_AUTOCAPITALIZATION_NONE
@@ -56,14 +56,14 @@ var sex = Ti.UI.createTextField({
 
 var picker = null;
 var cancel = Ti.UI.createButton({
-	title:L('Cancelar'),
+	title:L('txt_cancelar'),
 	style:Ti.UI.iPhone.SystemButtonStyle.BORDERED
 });
 var spacer = Ti.UI.createButton({
 	systemButton:Ti.UI.iPhone.SystemButton.FLEXIBLE_SPACE
 });
 var done = Ti.UI.createButton({
-	title:L('Aceptar'),
+	title:L('txt_aceptar'),
 	style:Ti.UI.iPhone.SystemButtonStyle.DONE
 });
 var toolbar = Ti.UI.iOS.createToolbar({
@@ -101,13 +101,13 @@ sex.addEventListener('click', function() {
 	rows.push(row);
 	
 	var row = Ti.UI.createPickerRow({
-		title:L('Chico')
+		title:L('txt_chico')
 	});
 	row.id = 0;
 	rows.push(row);
 	
 	var row = Ti.UI.createPickerRow({
-		title:L('Chica')
+		title:L('txt_chica')
 	});
 	row.id = 1;
 	rows.push(row);
@@ -157,11 +157,11 @@ var preview = Ti.UI.createImageView({
 previewView.add(preview);
 
 var next_step = Ti.UI.createButton({
-	title:L('Continuar'),
+	title:L('txt_continuar'),
 	right:20
 });
 var cancel = Ti.UI.createButton({
-	title:L('Cancelar'),
+	title:L('txt_cancelar'),
 	left:20
 });
 
@@ -176,7 +176,7 @@ next_step.addEventListener('click', function() {
 		var uploading = require('uploading');
 		uploading(win, win.e, true);
 	} else {
-		Ti.App.alert(L('Error'), L('Faltan campos por rellenar'));
+		Ti.App.alert(L('txt_error'), L('error_fields'));
 	}
 });
 cancel.addEventListener('click', function() {

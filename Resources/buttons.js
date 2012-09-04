@@ -1,11 +1,11 @@
 function buttons(view) {
 	var createButton = require('button');
-	var button1 = createButton(L('Chicos'), 'left', 0);
-	var button2 = createButton(L('Chicas'), 'right', 0);
-	var button3 = createButton(L('Desde'), 'left', 1);
-	var button4 = createButton(L('Hasta'), 'right', 1);
-	var button5 = createButton(L('País'), 'left', 2);
-	var button6 = createButton(L('Todos'), 'right', 2);
+	var button1 = createButton(L('txt_chicos'), 'left', 0);
+	var button2 = createButton(L('txt_chicas'), 'right', 0);
+	var button3 = createButton(L('txt_desde'), 'left', 1);
+	var button4 = createButton(L('txt_hasta'), 'right', 1);
+	var button5 = createButton(L('txt_pais'), 'left', 2);
+	var button6 = createButton(L('txt_todos'), 'right', 2);
 	
 	button1._selected = button2._selected = false;
 	
@@ -72,7 +72,8 @@ function buttons(view) {
 			borderRadius:5,
 			borderColor:'#4F1722',
 			separatorColor:'#4F1722',
-			top:45,bottom:45,left:5,right:5
+			top:45,bottom:45,left:5,right:5,
+			zIndex:1000
 		});
 		var thisOne = Ti.UI.createImageView({image:'images/prev.png', right:20});
 		for (i in Ti.App.countries) {

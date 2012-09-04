@@ -23,12 +23,12 @@ function uploading(win, e, register) {
 	photoView.add(photo);
 	
 	var upload = Ti.UI.createButton({
-		title:L('Subir foto'),
+		title:L('upload'),
 		top:300,
 		right:40
 	});
 	var cancel = Ti.UI.createButton({
-		title:L('Cancelar'),
+		title:L('txt_cancelar'),
 		top:300,
 		left:40
 	});

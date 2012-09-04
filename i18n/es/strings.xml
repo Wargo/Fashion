@@ -2,7 +2,13 @@
 <resources>
 	<string name="txt_chicos">Chicos</string>
 	<string name="txt_chicas">Chicas</string>
+	<string name="txt_chico">Chico</string>
+	<string name="txt_chica">Chica</string>
 	<string name="txt_guardar">Guardar</string>
+	<string name="txt_desde">Desde</string>
+	<string name="txt_hasta">Hasta</string>
+	<string name="txt_pais">País</string>
+	<string name="txt_continuar">Continuar</string>
 	<string name="loading_text">Cargando nueva imagen</string>
 	<string name="title_options_page">¿Qué buscas?</string>
 	<string name="txt_error">Error</string>
@@ -28,7 +34,7 @@
 	<string name="upload">Subir foto</string>
 	<string name="uploading">Subiendo imagen...</string>
 	<string name="swipe_text">Puntúa la foto</string>
-	<string name="txt_ok">Ok</string>
+	<string name="ok">Ok</string>
 	<string name="conecting">Conectando...</string>
 	<string name="error_fields">Faltan campos por rellenar</string>
 	<string name="saved_message">Voto guardado</string>

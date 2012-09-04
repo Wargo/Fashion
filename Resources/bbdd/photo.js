@@ -7,17 +7,17 @@ function photo(current_id) {
 			var result = eval('(' + this.responseText + ')');
 			Ti.App.result = result.status;
 			if (result.status == 'ok') {
-				loading.setMessage(L('Cargando nueva imagen'));
+				loading.setMessage(L('loading_text'));
 				Ti.App.current = result.data;
 				image.image = Ti.App.current.url;
 				win.remove(refresh2); // TODO muestra warnings cuando no está todavía añadido
 			} else {
-				Ti.App.alert(L('Error'), result.message);
-				loading.setMessage(L('No hay fotos nuevas'));
+				Ti.App.alert(L('txt_error'), result.message);
+				loading.setMessage(L('no_photos_error'));
 				
 				refresh2.add(Ti.UI.createImageView({image:'images/refresh.png'}));
 				refresh2.addEventListener('singletap', function() {
-					loading.setMessage(L('Cargando nueva imagen'));
+					loading.setMessage(L('loading_text'));
 					win.remove(refresh2);
 					client.open('POST', path);
 					send();
@@ -27,7 +27,7 @@ function photo(current_id) {
 					win.add(refresh2);
 				}
 				
-				messageFilter.add(Ti.UI.createLabel({top:15,font:{fontSize:13},text:L('Modificar filtros'), color:'#FFF'}));
+				messageFilter.add(Ti.UI.createLabel({top:15,font:{fontSize:13},text:L('modify_filters'), color:'#FFF'}));
 				if (messageFilter.opacity == 0) {
 					win.add(messageFilter);
 					var appear = Ti.UI.createAnimation({opacity:0.7, delay:1000});
@@ -39,7 +39,7 @@ function photo(current_id) {
 			}
 		},
 		onerror: function(e) {
-			Ti.App.alert(L('Error'), L('Ha ocurrido un error con la conexión'));
+			Ti.App.alert(L('txt_error'), L('connection_error'));
 			loading.hide();
 			var refresh = Ti.UI.createView({
 				backgroundColor:'#000',
@@ -52,7 +52,7 @@ function photo(current_id) {
 			var wifi = Ti.UI.createImageView({image:'images/wifi.png', top:40});
 			win.add(wifi);
 			refresh.add(Ti.UI.createLabel({
-				text:L('Estamos tardando en cargar la imagen más de lo esperado'),
+				text:L('loading_error'),
 				font:{fontSize:12},
 				top:10,left:10,right:10,
 				color:'#FFF',
@@ -60,7 +60,7 @@ function photo(current_id) {
 			}));
 			refresh.add(Ti.UI.createImageView({image:'images/refresh.png', top:65}));
 			refresh.add(Ti.UI.createLabel({
-				text:L('Comprueba la cobertura o conéctate a una red Wi-Fi'),
+				text:L('wifi'),
 				font:{fontSize:12},
 				bottom:10,left:10,right:10,
 				color:'#FFF',
@@ -97,11 +97,11 @@ function photo(current_id) {
 				footer.remove(footer._tools);
 				var ok2 = Ti.UI.createView({height:40,width:50,left:0});
 				var toRemove = options(null, footer._tools, ok2);
-				ok2.add(Ti.UI.createLabel({text:L('Ok')}));
+				ok2.add(Ti.UI.createLabel({text:L('ok')}));
 				footer.add(ok2);
 				ok2.addEventListener('singletap', function() {
 					if (!Ti.App.Properties.getBool('boys') && !Ti.App.Properties.getBool('girls')) {
-						Ti.App.alert(L('Error'), L('Tienes que seleccionar qué es lo que buscas'));
+						Ti.App.alert(L('txt_error'), L('options_error'));
 						return;
 					}
 					toRemove.animate({top:400,opacity:0});
