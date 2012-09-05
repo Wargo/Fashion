@@ -131,7 +131,8 @@ module.exports = function() {
 	
 	var scrollableView = Ti.UI.createScrollableView({
 		showPagingControl:true,
-		pagingControlColor:'transparent'
+		pagingControlColor:'transparent',
+		cacheSize:10
 	});
 	
 	scrollableView.addEventListener('scroll', function() {
