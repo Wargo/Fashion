@@ -43,6 +43,9 @@ module.exports = function() {
 	});
 	editButton.add(Ti.UI.createLabel({text:L('edit')}));
 	editButton.addEventListener('click', function() {
+		f_editing();
+	});
+	function f_editing() {
 		if (!canEdit) {
 			return;
 		}
@@ -69,20 +72,28 @@ module.exports = function() {
 		for (x in images[y]) {
 			
 			var deleteImage = Ti.UI.createView({
-				width:20,
-				height:20,
+				width:23,
+				height:23,
 				top:5,
 				right:0,
 				borderRadius:10,
 				backgroundColor:'#FFF',
 				borderColor:'#000',
 				borderWidth:2,
-				opacity:0.8,
-				_x:x
+				opacity:0.7,
+				_x:x,
+				_id:images[y][x]._id
 			});
-			deleteImage.add(Ti.UI.createImageView({image:'images/delete.png', _x:x}));
+			deleteImage.add(Ti.UI.createImageView({image:'images/delete.png', _x:x, _id:images[y][x]._id}));
 			deleteImage.addEventListener('click', function(e) {
-				images[y][e.source._x]._smallView.animate({opacity:0.4});
+				var deletingImage = require('bbdd/deleteMyImage');
+				if (images[y][e.source._x]._smallView.opacity > 0.4) {
+					images[y][e.source._x]._smallView.animate({opacity:0.4});
+					deletingImage(e.source._id, 0)
+				} else {
+					images[y][e.source._x]._smallView.animate({opacity:1});
+					deletingImage(e.source._id, 1)
+				}
 			});
 			images[y][x]._smallView.add(deleteImage);
 			
@@ -115,7 +126,7 @@ module.exports = function() {
 			});
 			
 		}
-	});
+	}
 
 	var header = Ti.UI.createView({
 		backgroundColor:'#F2F2F2',
@@ -164,13 +175,14 @@ module.exports = function() {
 		for (i in data) {
 			var left = 15 + (i % 3) * 100;
 			if (i % 3 === 0 && i != 0) {
-				top += 140;
+				top += 135;
 			}
 			var smallView = Ti.UI.createView({
 				top:top,
 				left:left,
 				width:90,
-				height:130
+				height:130,
+				opacity:1
 			});
 
 			var smallLoading = Ti.UI.createActivityIndicator();
@@ -181,7 +193,32 @@ module.exports = function() {
 				image: data[i].thumb,
 				opacity:0,
 				_firstLoad:true,
-				_smallLoading:smallLoading
+				_smallLoading:smallLoading,
+				_id:data[i].id,
+				_i:i
+			});
+			
+			if (data[i].active != 1) {
+				smallView.opacity = 0.4;
+			}
+			
+			img.addEventListener('longpress', function() {
+				f_editing();
+			});
+			img.addEventListener('singletap', function(e) {
+				var loadingImage = Ti.UI.createActivityIndicator();
+				var imageView = Ti.UI.createScrollView({
+					maxZoomScale: 10,
+					minZoomScale: 1,
+					backgroundColor:'#000',
+					top:0,left:0,right:0,bottom:0
+				});
+				imageView.add(loadingImage);
+				imageView.add(Ti.UI.createImageView({image:data[e.source._i].photo}));
+				win.add(imageView);
+				imageView.addEventListener('singletap', function() {
+					win.remove(imageView);
+				});
 			});
 
 			img.addEventListener('load', function(e) {
