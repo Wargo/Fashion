@@ -29,7 +29,11 @@ function showFooter() {
 	takePhoto.add(Ti.UI.createImageView({left:10, image:'images/camera.png', height:15}));	
 	takePhoto.add(Ti.UI.createLabel({left:15, color:'#333', text:L('upload')}));
 	takePhoto.addEventListener('singletap', function() {
-		var dialog = Ti.UI.createOptionDialog({
+		if (menu._showed) {
+			submenu.animate({bottom:-300});
+			menu._showed = false;
+		}
+		var dialog = Ti.UI.createOptionDialog({ // Es necesario crearlo cada vez, si no, da error en la galería
 			title: L('txt_get_image'),
 			options: [L('txt_camara'), L('txt_galeria'), L('txt_cancelar')],
 			cancel:2
@@ -49,14 +53,24 @@ function showFooter() {
 	myPhotos.add(Ti.UI.createImageView({left:10, image:'images/photos.png', height:20}));
 	myPhotos.add(Ti.UI.createLabel({left:15, color:'#333', text:L('my_photos')}));
 	myPhotos.addEventListener('singletap', function() {
-		alert('deshabilitado');
+		var myPhotosWin = require('myPhotos');
+		var aux = new MyPhotosWin();
+		aux.open();
+		if (menu._showed) {
+			submenu.animate({bottom:-300});
+			menu._showed = false;
+		}
 	});
 
 	var favorites = Ti.UI.createView($$.menuElement);
 	favorites.add(Ti.UI.createImageView({left:10, image:'images/star_black.png', height:25}));
 	favorites.add(Ti.UI.createLabel({left:15, color:'#333', text:L('favorites')}));
 	favorites.addEventListener('singletap', function() {
-		alert('deshabilitado');
+		Ti.App.alert(L('txt_error'), L('need_pro'));
+		if (menu._showed) {
+			submenu.animate({bottom:-300});
+			menu._showed = false;
+		}
 	});
 
 	var upgradePro = Ti.UI.createView($$.menuElement);
@@ -64,6 +78,10 @@ function showFooter() {
 	upgradePro.add(Ti.UI.createLabel({font:{fontWeight:'bold', fontSize:18}, color:'#B4394F', text:L('pro')}));
 	upgradePro.addEventListener('singletap', function() {
 		alert('deshabilitado');
+		if (menu._showed) {
+			submenu.animate({bottom:-300});
+			menu._showed = false;
+		}
 	});
 	
 	var submenu = Ti.UI.createView({

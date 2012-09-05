@@ -39,6 +39,7 @@
 	<string name="conecting">Conectando...</string>
 	<string name="my_photos">Mis fotos</string>
 	<string name="pro">Upgrade PRO</string>
+	<string name="need_pro">Necesitas la versión PRO</string>
 	<string name="favorites">Favoritos</string>
 	<string name="error_fields">Faltan campos por rellenar</string>
 	<string name="saved_message">Voto guardado</string>
