@@ -36,7 +36,7 @@ module.exports = function() {
 	
 	function getImages(data) {
 		if (data === null) {
-			win.close({top:-480});
+			win.close({left:400});
 		}
 		var top = 10;
 		for (i in data) {

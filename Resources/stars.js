@@ -11,7 +11,7 @@ module.exports = function(num, size) {
 	var yellow = Math.floor(num / 5);
 	var black = Math.floor((5 - num) / 5);
 	
-	for (i = 0; i < yellow; i ++) {
+	for (j = 0; j < yellow; j ++) {
 		view.add(Ti.UI.createImageView({image:'images/star_yellow.png', left:5, heigh:h}));
 	}
 
@@ -26,7 +26,7 @@ module.exports = function(num, size) {
 		}
 	}
 
-	for (i = 0; i < black; i ++) {
+	for (j = 0; j < black; j ++) {
 		view.add(Ti.UI.createImageView({image:'images/star_black.png', left:5, heigh:h}));
 	}
 
