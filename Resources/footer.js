@@ -55,7 +55,7 @@ function showFooter() {
 	myPhotos.addEventListener('singletap', function() {
 		var myPhotosWin = require('myPhotos');
 		var aux = new myPhotosWin();
-		aux.open();
+		aux.open({top:0});
 		if (menu._showed) {
 			submenu.animate({bottom:-300});
 			menu._showed = false;
