@@ -1,4 +1,5 @@
 function showFooter() {
+	var $$ = require('styles');
 	var optionsView = null;
 	var view = Ti.UI.createView({
 		backgroundColor:'#F2F2F2',
@@ -24,13 +25,7 @@ function showFooter() {
 		optionsView = options(optionsView, tools, ok);
 	});
 
-	var takePhoto = Ti.UI.createView({
-		height:40,
-		right:0,
-		borderWidth:1,
-		borderColor:'#333',
-		layout:'horizontal'
-	});
+	var takePhoto = Ti.UI.createView($$.menuElement);
 	takePhoto.add(Ti.UI.createImageView({left:10, image:'images/camera.png'}));	
 	takePhoto.add(Ti.UI.createLabel({left:10, color:'#333', text:L('upload')}));
 	takePhoto.addEventListener('singletap', function() {
@@ -50,24 +45,28 @@ function showFooter() {
 		});
 	});
 
-	var myPhotos = Ti.UI.createView({
-		height:40,
-		right:0,
-		borderWidth:1,
-		borderColor:'#333',
-		layout:'horizontal'
-	});
+	var myPhotos = Ti.UI.createView($$.menuElement);
 	myPhotos.add(Ti.UI.createImageView({left:10, image:'images/photos.png'}));	
 	myPhotos.add(Ti.UI.createLabel({left:10, color:'#333', text:L('my_photos')}));
 	myPhotos.addEventListener('singletap', function() {
+	});
+
+	var upgradePro = Ti.UI.createView($$.menuElement);
+	upgradePro.add(Ti.UI.createImageView({left:10, image:'images/upgrade.png'}));	
+	upgradePro.add(Ti.UI.createLabel({left:10, color:'#333', text:L('pro')}));
+	upgradePro.addEventListener('singletap', function() {
+	});
+
+	var favorites = Ti.UI.createView($$.menuElement);
+	favorites.add(Ti.UI.createImageView({left:10, image:'images/star_off.png'}));	
+	favorites.add(Ti.UI.createLabel({left:10, color:'#333', text:L('favorites')}));
+	favorites.addEventListener('singletap', function() {
 	});
 	
 	var menu = Ti.UI.createView({
 		height:40,
 		width:100,
-		right:0,
-		borderWidth:1,
-		borderColor:'#333'
+		right:0
 	});
 	menu.add(Ti.UI.createLabel({text:L('menu')}));
 	menu.addEventListener('click', function(e) {
@@ -78,10 +77,14 @@ function showFooter() {
 			bottom:-300,
 			backgroundColor:'#F2F2F2',
 			zIndex:100,
+			borderWidth:1,
+			borderColor:'#333'
 			layout:'vertical'
 		});
-		submenu.add(takePhoto);
+		submenu.add(upgradePro);
 		submenu.add(myPhotos);
+		submenu.add(favorites);
+		submenu.add(takePhoto);
 		win.add(submenu);
 		submenu.animate({bottom:40});
 	});
