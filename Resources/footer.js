@@ -49,44 +49,56 @@ function showFooter() {
 	myPhotos.add(Ti.UI.createImageView({left:10, image:'images/photos.png', height:20}));
 	myPhotos.add(Ti.UI.createLabel({left:15, color:'#333', text:L('my_photos')}));
 	myPhotos.addEventListener('singletap', function() {
+		alert('deshabilitado');
 	});
 
 	var favorites = Ti.UI.createView($$.menuElement);
 	favorites.add(Ti.UI.createImageView({left:10, image:'images/star_black.png', height:25}));
 	favorites.add(Ti.UI.createLabel({left:15, color:'#333', text:L('favorites')}));
 	favorites.addEventListener('singletap', function() {
+		alert('deshabilitado');
 	});
 
 	var upgradePro = Ti.UI.createView($$.menuElement);
 	upgradePro.layout = 'default';
 	upgradePro.add(Ti.UI.createLabel({font:{fontWeight:'bold', fontSize:18}, color:'#B4394F', text:L('pro')}));
 	upgradePro.addEventListener('singletap', function() {
+		alert('deshabilitado');
 	});
 	
+	var submenu = Ti.UI.createView({
+		right:0,
+		width:150,
+		height:45 * 4, // 40 * número de elementos en el menú
+		bottom:-300,
+		backgroundColor:'#F2F2F2',
+		zIndex:100,
+		borderWidth:1,
+		borderColor:'#333',
+		layout:'vertical'
+	});
+	submenu.add(upgradePro);
+	submenu.add(myPhotos);
+	submenu.add(favorites);
+	submenu.add(takePhoto);
+	win.add(submenu);
+
 	var menu = Ti.UI.createView({
 		height:40,
 		width:100,
-		right:0
+		right:0,
+		_showed:false
 	});
 	menu.add(Ti.UI.createLabel({text:L('menu')}));
-	menu.addEventListener('click', function(e) {
-		var submenu = Ti.UI.createView({
-			right:0,
-			width:150,
-			height:45 * 4, // 40 * número de elementos en el menú
-			bottom:-300,
-			backgroundColor:'#F2F2F2',
-			zIndex:100,
-			borderWidth:1,
-			borderColor:'#333',
-			layout:'vertical'
-		});
-		submenu.add(upgradePro);
-		submenu.add(myPhotos);
-		submenu.add(favorites);
-		submenu.add(takePhoto);
-		win.add(submenu);
-		submenu.animate({bottom:40});
+
+	menu.addEventListener('click', function() {
+		if (menu._showed) {
+			submenu.animate({bottom:-300});
+			menu._showed = false;
+		} else {
+			menu._showed = true;
+			submenu.animate({bottom:40});
+		}
 	});
 	
 	var separator = Ti.UI.createView({
