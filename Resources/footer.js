@@ -58,7 +58,8 @@ function showFooter() {
 	});
 
 	var upgradePro = Ti.UI.createView($$.menuElement);
-	upgradePro.add(Ti.UI.createLabel({font:{fontWeight:'bold', fontSize:14}, left:30, top:10, color:'#B4394F', text:L('pro')}));
+	upgradePro.layout = 'default';
+	upgradePro.add(Ti.UI.createLabel({font:{fontWeight:'bold', fontSize:18}, color:'#B4394F', text:L('pro')}));
 	upgradePro.addEventListener('singletap', function() {
 	});
 	
