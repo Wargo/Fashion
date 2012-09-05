@@ -3,6 +3,14 @@ module.exports = function() {
 	var win = Ti.UI.createWindow({
 		backgroundImage:'images/background.png'
 	});
+
+	var header = Ti.UI.createView({
+		backgroundColor:'#F2F2F2',
+		height:40,
+		top:0,
+		zIndex:1000
+	});
+	header.add(Ti.UI.createLabel({text:L('title_my_photos')}));
 	
 	var scrollView = Ti.UI.createScrollView({
 		showVerticalScrollIndicator:true,
@@ -27,18 +35,31 @@ module.exports = function() {
 			}
 			var img = Ti.UI.createImageView({
 				image: data[i].thumb,
-				width:90,
-				height:90,
 				top:top,
-				left:left
+				left:left,
+				_firstLoad:true
 			});
 			scrollView.add(img);
+
+			img.addEventListener('load', function(e) {
+				if (e.source._firstLoad) {
+					var thumb = ImageFactory.imageAsThumbnail(e.source.toBlob(), {
+						size:90,
+						borderSize:5,
+						cornerRadius:10,
+						quality:ImageFactory.QUALITY_HIGH
+					});
+					e.source.image = thumb;
+					e.source._firstLoad = false;
+				}
+			});
 		}
 	}
 	
 	var getData = require('bbdd/getData');
 	getData(getImages);
 	
+	win.add(header);
 	win.add(scrollView);
 
 	return win;
