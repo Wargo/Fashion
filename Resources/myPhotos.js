@@ -42,13 +42,13 @@ module.exports = function() {
 		for (i in data) {
 			var left = 10 + (i % 3) * 100;
 			if (i % 3 === 0 && i != 0) {
-				top += 130;
+				top += 140;
 			}
 			var smallView = Ti.UI.createView({
 				top:top,
 				left:left,
 				width:90,
-				height:120
+				height:130
 			});
 
 			var smallLoading = Ti.UI.createActivityIndicator();
@@ -63,6 +63,7 @@ module.exports = function() {
 			});
 
 			img.addEventListener('load', function(e) {
+				loading.hide(); // lo oculto aquí porque si lo hago antes se queda mucho rato sin loading
 				if (e.source._firstLoad) {
 					var thumb = ImageFactory.imageAsThumbnail(e.source.toBlob(), {
 						size:90,
@@ -79,16 +80,22 @@ module.exports = function() {
 			});
 
 			var rating = require('stars');
-			var stars = rating(data[i].rating, 88);
+			var stars = rating(data[i].rating, 90);
+			stars.top = 95;
 
 			smallView.add(smallLoading);
 			smallView.add(img);
 			smallView.add(stars);
 			//smallView.add(Ti.UI.createLabel({text:data[i].rating, top:90, font:{fontSize:12}}));
-			smallView.add(Ti.UI.createLabel({text:data[i].num, top:105, font:{fontSize:12}}));
+			if (data[i].num != 1) {
+				var num_votes = String.format(L('num_votes'), data[i].num);
+			} else {
+				var num_votes = String.format(L('num_vote'), 1);
+			}
+			smallView.add(Ti.UI.createLabel({text:num_votes, top:115, font:{fontSize:12}}));
 			scrollView.add(smallView);
 		}
-		loading.hide();
+		scrollView.add(Ti.UI.createView({height:15, top:top + 140})); // Espacio al final del scrollview
 		win.add(scrollView);
 	}
 	
