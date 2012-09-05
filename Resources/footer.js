@@ -78,7 +78,7 @@ function showFooter() {
 			backgroundColor:'#F2F2F2',
 			zIndex:100,
 			borderWidth:1,
-			borderColor:'#333'
+			borderColor:'#333',
 			layout:'vertical'
 		});
 		submenu.add(upgradePro);
