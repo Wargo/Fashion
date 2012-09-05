@@ -79,6 +79,26 @@ module.exports = function() {
 				}
 			});
 
+			img.addEventListener('longpress', function(e) {
+				var tr1 = Ti.UI.createTransition({
+					rotate:-5
+				});
+				var tr2 = Ti.UI.createTransition({
+					rotate:5
+				});
+				var animate1 = Ti.UI.createAnimation({transition:tr1});
+				var animate2 = Ti.UI.createAnimation({transition:tr2});
+
+				e.source.animate(animate1);
+				
+				animate1.addEventListener('complete', function() {
+					e.source.animate(animate2);
+				});
+				animate2.addEventListener('complete', function() {
+					e.source.animate(animate1);
+				});
+			});
+
 			var rating = require('stars');
 			var stars = rating(data[i].rating, 90);
 			stars.top = 95;
