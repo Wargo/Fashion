@@ -2,7 +2,7 @@ module.exports = function() {
 
 	var win = Ti.UI.createWindow({
 		backgroundImage:'images/background.png',
-		top:-480
+		left:400
 	});
 
 	var backButton = Ti.UI.createView({
@@ -12,7 +12,7 @@ module.exports = function() {
 	});
 	backButton.add(Ti.UI.createImageView({image:'images/back.png'}));
 	backButton.addEventListener('click', function() {
-		win.close({top:-480});
+		win.close({left:400});
 	});
 
 	var header = Ti.UI.createView({
@@ -42,19 +42,20 @@ module.exports = function() {
 		for (i in data) {
 			var left = 10 + (i % 3) * 100;
 			if (i % 3 === 0 && i != 0) {
-				top += 100;
+				top += 130;
 			}
 			var smallView = Ti.UI.createView({
 				top:top,
 				left:left,
 				width:90,
-				height:150
+				height:120
 			});
 
 			var smallLoading = Ti.UI.createActivityIndicator();
 			smallLoading.show();
 
 			var img = Ti.UI.createImageView({
+				top:0,
 				image: data[i].thumb,
 				opacity:0,
 				_firstLoad:true,
@@ -77,20 +78,20 @@ module.exports = function() {
 				}
 			});
 
-			smallview.add(smallLoading);
+			smallView.add(smallLoading);
 			smallView.add(img);
-			smallView.add(Ti.UI.createLabel({text:data[i].rating, top:100}));
-			smallView.add(Ti.UI.createLabel({text:data[i].num, top:125}));
+			smallView.add(Ti.UI.createLabel({text:data[i].rating, top:90, font:{fontSize:12}}));
+			smallView.add(Ti.UI.createLabel({text:data[i].num, top:105, font:{fontSize:12}}));
 			scrollView.add(smallView);
 		}
 		loading.hide();
+		win.add(scrollView);
 	}
 	
 	var getData = require('bbdd/getData');
 	getData(getImages);
 	
 	win.add(header);
-	win.add(scrollView);
 
 	return win;
 
