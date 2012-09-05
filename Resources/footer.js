@@ -54,7 +54,7 @@ function showFooter() {
 	myPhotos.add(Ti.UI.createLabel({left:15, color:'#333', text:L('my_photos')}));
 	myPhotos.addEventListener('singletap', function() {
 		var myPhotosWin = require('myPhotos');
-		var aux = new MyPhotosWin();
+		var aux = new myPhotosWin();
 		aux.open();
 		if (menu._showed) {
 			submenu.animate({bottom:-300});
