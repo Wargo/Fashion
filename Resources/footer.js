@@ -52,8 +52,7 @@ function showFooter() {
 	});
 
 	var upgradePro = Ti.UI.createView($$.menuElement);
-	upgradePro.add(Ti.UI.createImageView({left:10, image:'images/upgrade.png'}));	
-	upgradePro.add(Ti.UI.createLabel({left:10, color:'#333', text:L('pro')}));
+	upgradePro.add(Ti.UI.createLabel({font:{fontWeight:'bold'}, color:'#B4394F', text:L('pro')}));
 	upgradePro.addEventListener('singletap', function() {
 	});
 
@@ -73,7 +72,7 @@ function showFooter() {
 		var submenu = Ti.UI.createView({
 			right:0,
 			width:150,
-			height:40 * 2, // 40 * número de elementos en el menú
+			height:40 * 4, // 40 * número de elementos en el menú
 			bottom:-300,
 			backgroundColor:'#F2F2F2',
 			zIndex:100,
