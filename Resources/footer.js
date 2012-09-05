@@ -26,8 +26,8 @@ function showFooter() {
 	});
 
 	var takePhoto = Ti.UI.createView($$.menuElement);
-	takePhoto.add(Ti.UI.createImageView({left:10, image:'images/camera.png'}));	
-	takePhoto.add(Ti.UI.createLabel({left:10, color:'#333', text:L('upload')}));
+	takePhoto.add(Ti.UI.createImageView({left:10, image:'images/camera.png', height:25}));	
+	takePhoto.add(Ti.UI.createLabel({left:15, color:'#333', text:L('upload')}));
 	takePhoto.addEventListener('singletap', function() {
 		var dialog = Ti.UI.createOptionDialog({
 			title: L('txt_get_image'),
@@ -46,20 +46,20 @@ function showFooter() {
 	});
 
 	var myPhotos = Ti.UI.createView($$.menuElement);
-	myPhotos.add(Ti.UI.createImageView({left:10, image:'images/photos.png'}));	
-	myPhotos.add(Ti.UI.createLabel({left:10, color:'#333', text:L('my_photos')}));
+	myPhotos.add(Ti.UI.createImageView({left:10, image:'images/photos.png', height:25}));	
+	myPhotos.add(Ti.UI.createLabel({left:15, color:'#333', text:L('my_photos')}));
 	myPhotos.addEventListener('singletap', function() {
+	});
+
+	var favorites = Ti.UI.createView($$.menuElement);
+	favorites.add(Ti.UI.createImageView({left:15, image:'images/star_black.png', height:25}));
+	favorites.add(Ti.UI.createLabel({left:10, color:'#333', text:L('favorites')}));
+	favorites.addEventListener('singletap', function() {
 	});
 
 	var upgradePro = Ti.UI.createView($$.menuElement);
 	upgradePro.add(Ti.UI.createLabel({font:{fontWeight:'bold', fontSize:14}, left:30, top:10, color:'#B4394F', text:L('pro')}));
 	upgradePro.addEventListener('singletap', function() {
-	});
-
-	var favorites = Ti.UI.createView($$.menuElement);
-	favorites.add(Ti.UI.createImageView({left:10, image:'images/star_black.png', height:35}));
-	favorites.add(Ti.UI.createLabel({left:10, color:'#333', text:L('favorites')}));
-	favorites.addEventListener('singletap', function() {
 	});
 	
 	var menu = Ti.UI.createView({
