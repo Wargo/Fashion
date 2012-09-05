@@ -52,12 +52,12 @@ function showFooter() {
 	});
 
 	var upgradePro = Ti.UI.createView($$.menuElement);
-	upgradePro.add(Ti.UI.createLabel({font:{fontWeight:'bold', fontSize:14}, left:30, top:15, color:'#B4394F', text:L('pro')}));
+	upgradePro.add(Ti.UI.createLabel({font:{fontWeight:'bold', fontSize:14}, left:30, top:10, color:'#B4394F', text:L('pro')}));
 	upgradePro.addEventListener('singletap', function() {
 	});
 
 	var favorites = Ti.UI.createView($$.menuElement);
-	favorites.add(Ti.UI.createImageView({left:10, image:'images/star_black.png'}));
+	favorites.add(Ti.UI.createImageView({left:10, image:'images/star_black.png', height:35}));
 	favorites.add(Ti.UI.createLabel({left:10, color:'#333', text:L('favorites')}));
 	favorites.addEventListener('singletap', function() {
 	});
