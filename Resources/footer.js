@@ -65,6 +65,7 @@ function showFooter() {
 	var favorites = Ti.UI.createView($$.menuElement);
 	favorites.add(Ti.UI.createImageView({left:10, image:'images/star_black.png', height:25}));
 	favorites.add(Ti.UI.createLabel({left:15, color:'#333', text:L('favorites')}));
+	favorites.opacity = 0.4;
 	favorites.addEventListener('singletap', function() {
 		Ti.App.alert(L('txt_error'), L('need_pro'));
 		if (menu._showed) {
@@ -72,7 +73,7 @@ function showFooter() {
 			menu._showed = false;
 		}
 	});
-
+	
 	var upgradePro = Ti.UI.createView($$.menuElement);
 	upgradePro.layout = 'default';
 	upgradePro.add(Ti.UI.createLabel({font:{fontWeight:'bold', fontSize:18}, color:'#B4394F', text:L('pro')}));

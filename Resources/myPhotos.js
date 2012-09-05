@@ -30,7 +30,7 @@ module.exports = function() {
 
 	var top = 10;
 	for (i in data) {
-		var left = 10 + (i % 3) * 100;
+		var left = 12 + (i % 3) * 100;
 		if (i % 3 === 0 && i != 0) {
 			top += 100;
 		}
@@ -39,7 +39,8 @@ module.exports = function() {
 			width:90,
 			height:90,
 			top:top,
-			left:left
+			left:left,
+			backgroundColor:'#FFF'
 		});
 		scrollView.add(img);
 	}
