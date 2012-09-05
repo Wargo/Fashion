@@ -9,8 +9,13 @@ module.exports = function() {
 		contentHeight:'auto',
 		top:40
 	});
-
+	
+	var loading = Ti.UI.createActivityIndicator();
+	win.add(loading);
+	loading.show();
+	
 	function getImages(data) {
+		loading.hide();
 		var top = 10;
 		for (i in data) {
 			var left = 10 + (i % 3) * 100;
