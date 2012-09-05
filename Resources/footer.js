@@ -46,14 +46,14 @@ function showFooter() {
 	});
 
 	var myPhotos = Ti.UI.createView($$.menuElement);
-	myPhotos.add(Ti.UI.createImageView({left:10, image:'images/photos.png', height:18}));	
+	myPhotos.add(Ti.UI.createImageView({left:10, image:'images/photos.png', height:20}));
 	myPhotos.add(Ti.UI.createLabel({left:15, color:'#333', text:L('my_photos')}));
 	myPhotos.addEventListener('singletap', function() {
 	});
 
 	var favorites = Ti.UI.createView($$.menuElement);
 	favorites.add(Ti.UI.createImageView({left:10, image:'images/star_black.png', height:25}));
-	favorites.add(Ti.UI.createLabel({left:20, color:'#333', text:L('favorites')}));
+	favorites.add(Ti.UI.createLabel({left:15, color:'#333', text:L('favorites')}));
 	favorites.addEventListener('singletap', function() {
 	});
 
