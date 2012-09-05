@@ -72,7 +72,7 @@ function showFooter() {
 		var submenu = Ti.UI.createView({
 			right:0,
 			width:150,
-			height:40 * 4, // 40 * número de elementos en el menú
+			height:45 * 4, // 40 * número de elementos en el menú
 			bottom:-300,
 			backgroundColor:'#F2F2F2',
 			zIndex:100,

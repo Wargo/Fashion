@@ -1,6 +1,6 @@
 module.exports = {
 	menuElement: {
-		height:40,
+		height:45,
 		right:0,
 		borderWidth:1,
 		borderColor:'#333',
