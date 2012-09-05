@@ -30,14 +30,14 @@ module.exports = function() {
 
 	var top = 10;
 	for (i in data) {
-		var left = 10 + (i % 3) * 110;
+		var left = 10 + (i % 3) * 100;
 		if (i % 3 === 0 && i != 0) {
-			top += 110;
+			top += 100;
 		}
 		var img = Ti.UI.createImageView({
 			image: data[i].image,
-			width:100,
-			height:100,
+			width:90,
+			height:90,
 			top:top,
 			left:left
 		});
