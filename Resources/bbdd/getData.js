@@ -5,7 +5,7 @@ module.exports = function(getImages) {
 	win.add(loading);
 	loading.show();
 	
-	var path = Ti.App.url + 'my.php';
+	var path = Ti.App.dataURL + 'my.php';
 	var client = Ti.Network.createHTTPClient({
 		onload: function() {
 			var result = eval('(' + this.textResponse + ')');
