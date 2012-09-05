@@ -12,22 +12,22 @@ module.exports = function(num, size) {
 	var black = Math.floor((5 - num) / 5);
 	
 	for (i = 0; i < yellow; i ++) {
-		view.add(Ti.UI.createImageView({image:'images/star_yellow.png', left:5, heigh:h});
+		view.add(Ti.UI.createImageView({image:'images/star_yellow.png', left:5, heigh:h}));
 	}
 
 	if (yellow + black < 5) {
 		var diff = num - yellow;
 		if (diff <= 0.33) {
-			view.add(Ti.UI.createImageView({image:'images/star1_4.png', left:5, heigh:h});
+			view.add(Ti.UI.createImageView({image:'images/star1_4.png', left:5, heigh:h}));
 		} else if (diff <= 0.66) {
-			view.add(Ti.UI.createImageView({image:'images/star2_4.png', left:5, heigh:h});
+			view.add(Ti.UI.createImageView({image:'images/star2_4.png', left:5, heigh:h}));
 		} else {
-			view.add(Ti.UI.createImageView({image:'images/star3_4.png', left:5, heigh:h});
+			view.add(Ti.UI.createImageView({image:'images/star3_4.png', left:5, heigh:h}));
 		}
 	}
 
 	for (i = 0; i < black; i ++) {
-		view.add(Ti.UI.createImageView({image:'images/star_black.png', left:5, heigh:h});
+		view.add(Ti.UI.createImageView({image:'images/star_black.png', left:5, heigh:h}));
 	}
 
 	return view;
