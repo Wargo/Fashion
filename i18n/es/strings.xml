@@ -36,8 +36,8 @@
 	<string name="swipe_text">Puntúa la foto</string>
 	<string name="ok">Ok</string>
 	<string name="menu">Menú</string>
-	<string name="take_photo">Hacer una foto</string>
 	<string name="conecting">Conectando...</string>
+	<string name="my_photos">Mis fotos</string>
 	<string name="error_fields">Faltan campos por rellenar</string>
 	<string name="saved_message">Voto guardado</string>
 	<string name="modify_filters">Modificar filtros</string>
