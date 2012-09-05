@@ -7,7 +7,8 @@ module.exports = function() {
 
 	var backButton = Ti.UI.createView({
 		width:50,
-		height:40
+		height:40,
+		left:0
 	});
 	backButton.add(Ti.UI.createImageView({image:'images/back.png'}));
 	backButton.addEventListener('click', function() {
