@@ -15,6 +15,9 @@ module.exports = function() {
 	loading.show();
 	
 	function getImages(data) {
+		if (data === null) {
+			win.close();
+		}
 		loading.hide();
 		var top = 10;
 		for (i in data) {
