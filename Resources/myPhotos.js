@@ -78,9 +78,13 @@ module.exports = function() {
 				}
 			});
 
+			var rating = require('stars');
+			var stars = rating(data[i].rating, 88);
+
 			smallView.add(smallLoading);
 			smallView.add(img);
-			smallView.add(Ti.UI.createLabel({text:data[i].rating, top:90, font:{fontSize:12}}));
+			smallView.add(stars);
+			//smallView.add(Ti.UI.createLabel({text:data[i].rating, top:90, font:{fontSize:12}}));
 			smallView.add(Ti.UI.createLabel({text:data[i].num, top:105, font:{fontSize:12}}));
 			scrollView.add(smallView);
 		}
