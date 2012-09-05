@@ -23,13 +23,17 @@ function showFooter() {
 	ok.addEventListener('singletap', function() {
 		optionsView = options(optionsView, tools, ok);
 	});
-	
+
 	var takePhoto = Ti.UI.createView({
 		height:40,
-		width:50,
-		right:0
+		//width:50,
+		right:0,
+		borderWidth:1,
+		borderColor:'#333',
+		layout:'horizontal'
 	});
-	takePhoto.add(Ti.UI.createImageView({image:'images/camera.png'}));	
+	takePhoto.add(Ti.UI.createImageView({left:10, image:'images/camera.png'}));	
+	takePhoto.add(Ti.UI.createLabel({left:10, color:'#333', text:L('take_photo')}));	
 	takePhoto.addEventListener('singletap', function() {
 		var dialog = Ti.UI.createOptionDialog({
 			title: L('txt_get_image'),
@@ -47,6 +51,26 @@ function showFooter() {
 		});
 	});
 	
+	var menu = Ti.UI.createView({
+		height:40,
+		width:150,
+		right:0
+	});
+	menu.add(Ti.UI.createLabel({text:L('menu')});
+	menu.addEventListener('click', function(e) {
+		var submenu = Ti.UI.createView({
+			width:150,
+			height:250,
+			bottom:-300,
+			backgrounColor:'#F2F2F2',
+			zIndex:100,
+			layout:'vertical'
+		});
+		submenu.add(takePhoto);
+		win.add(submenu);
+		submenu.animate({bottom:40{);
+	});
+	
 	var separator = Ti.UI.createView({
 		width:1,
 		backgroundColor:'#BFB8B2',
@@ -55,14 +79,16 @@ function showFooter() {
 	var separator2 = Ti.UI.createView({
 		width:1,
 		backgroundColor:'#BFB8B2',
-		right:50
+		right:150
 	});
 	
 	view.add(separator);
 	view.add(tools);
 	view.add(ok);
 	view.add(separator2);
-	view.add(takePhoto);
+	//view.add(takePhoto);
+	view.add(menu);
+	
 	win.add(view);
 	
 	view._tools = tools;
