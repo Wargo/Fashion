@@ -1,14 +1,16 @@
 
-module.exports = function(getImages) {
+module.exports = function(getImages, page) {
 	
 	var path = Ti.App.dataURL + 'my.php';
 	var client = Ti.Network.createHTTPClient({
 		onload: function() {
 			var result = eval('(' + this.responseText + ')');
 			if (result.status === 'ok') {
-				getImages(result.data);
+				getImages(result.data, page);
 			} else {
-				Ti.App.alert(L('txt_error'), result.message);
+				if (result.message) {
+					Ti.App.alert(L('txt_error'), result.message);
+				}
 				getImages(null);
 			}
 		},
@@ -20,7 +22,8 @@ module.exports = function(getImages) {
 	
 	client.open('POST', path);
 	client.send({
-		id:Ti.App.Properties.getInt('user_id')
+		id:Ti.App.Properties.getInt('user_id'),
+		page:page
 	});
 	
 }
