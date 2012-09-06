@@ -63,19 +63,21 @@ module.exports = function() {
 			}
 			editing = false;
 			return;
+		} else {
+			for (x in images[y]) {
+				images[y][x]._deleteImage.opacity = 0.7;
+			}
 		}
 		editing = true;
 		
 		var tr1 = Ti.UI.create2DMatrix({
-			rotate:-2
+			rotate:-1
 		});
 		var tr2 = Ti.UI.create2DMatrix({
-			rotate:2
+			rotate:1
 		});
 		
 		for (x in images[y]) {
-
-			images[y][x]._deleteImage.opacity = 0.7;
 			
 			eval('var animation1_' + x + ' = Ti.UI.createAnimation({transform:tr1, duration:100});');
 			eval('var animation2_' + x + ' = Ti.UI.createAnimation({transform:tr2, duration:100});');
