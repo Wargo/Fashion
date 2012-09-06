@@ -266,11 +266,9 @@ module.exports = function() {
 			smallView.add(smallLoading);
 			smallView.add(img);
 			smallView.add(stars);
-			if (data[i].num != 1) {
-				var num_votes = String.format(L('num_votes'), data[i].num);
-			} else {
-				var num_votes = String.format(L('num_vote'), 1);
-			}
+			
+			var num_votes = Ti.App.LL('num_votes', data[i].num);
+			
 			smallView.add(Ti.UI.createLabel({text:num_votes, top:115, font:{fontSize:12}}));
 			//scrollView.add(smallView);
 			view.add(smallView);

@@ -19,6 +19,15 @@ function myAlert(title, text) {
 }
 Ti.App.alert = myAlert;
 
+function LL(text, num) {
+	if (num != 1) {
+		return String.format(L(text + '_p'), num);
+	} else {
+		return String.format(L(text + '_s'), num);
+	}
+}
+Ti.App.LL = LL;
+
 var props = Titanium.App.Properties.listProperties();
 for (var c = 0; c < props.length; c ++) {
     var value = Titanium.App.Properties.getString(props[c]);
