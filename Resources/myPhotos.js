@@ -205,15 +205,28 @@ module.exports = function() {
 			var smallLoading = Ti.UI.createActivityIndicator();
 			smallLoading.show();
 
-			var img = Ti.UI.createImageView({
-				top:0,
-				image: data[i].thumb,
-				opacity:0,
-				_firstLoad:true,
-				_smallLoading:smallLoading,
-				_id:data[i].id,
-				_i:i
-			});
+			var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'image_' + data[i].id);
+			if (file.exists()) {
+				var img = Ti.UI.createImageView({
+					top:0,
+					image:file,
+					opacity:0,
+					_firstLoad:false,
+					_smallLoading:smallLoading,
+					_id:data[i].id,
+					_i:i
+				});
+			} else {
+				var img = Ti.UI.createImageView({
+					top:0,
+					image:data[i].thumb,
+					opacity:0,
+					_firstLoad:true,
+					_smallLoading:smallLoading,
+					_id:data[i].id,
+					_i:i
+				});
+			}
 			
 			if (data[i].active != 1) {
 				smallView.opacity = 0.4;
@@ -249,6 +262,7 @@ module.exports = function() {
 					});
 					e.source.image = thumb;
 					e.source._firstLoad = false;
+					file.write(thumb);
 				} else {
 					e.source.animate({opacity:1});
 					e.source._smallLoading.hide();
