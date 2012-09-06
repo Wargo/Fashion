@@ -58,7 +58,8 @@ module.exports = function() {
 		if (editing) {
 			for (x in images[y]) {
 				images[y][x].animate({transform:tr, duration:100})
-				images[y][x]._smallView.remove(images[y][x]._deleteImage);
+				//images[y][x]._smallView.remove(images[y][x]._deleteImage);
+				images[y][x]._deleteImage.opacity = 0;
 			}
 			editing = false;
 			return;
@@ -73,41 +74,8 @@ module.exports = function() {
 		});
 		
 		for (x in images[y]) {
-			
-			var deleteImage = Ti.UI.createView({
-				width:23,
-				height:23,
-				top:5,
-				right:0,
-				borderRadius:10,
-				backgroundColor:'#FFF',
-				borderColor:'#000',
-				borderWidth:2,
-				opacity:0.7,
-				_x:x,
-				_id:images[y][x]._id
-			});
-			deleteImage.add(Ti.UI.createImageView({image:'images/delete.png', _x:x, _id:images[y][x]._id}));
-			deleteImage.addEventListener('click', function(e) {
-				if (images[y][e.source._x]._smallView.opacity > 0.4) {
-					var hide = Ti.UI.createAnimation({opacity:0.4});
-					images[y][e.source._x]._smallView.animate(hide);
-					hide.addEventListener('complete', function() {
-						images[y][e.source._x]._smallView.opacity = 0.4;
-					});
-					deletingImage(e.source._id, 0)
-				} else {
-					var show = Ti.UI.createAnimation({opacity:1});
-					images[y][e.source._x]._smallView.animate(show);
-					show.addEventListener('complete', function() {
-						images[y][e.source._x]._smallView.opacity = 1;
-					});
-					deletingImage(e.source._id, 1)
-				}
-			});
-			images[y][x]._smallView.add(deleteImage);
-			
-			images[y][x]._deleteImage = deleteImage;
+
+			images[y][x]._deleteImage.opacity = 0.7;
 			
 			eval('var animation1_' + x + ' = Ti.UI.createAnimation({transform:tr1, duration:100});');
 			eval('var animation2_' + x + ' = Ti.UI.createAnimation({transform:tr2, duration:100});');
@@ -271,6 +239,40 @@ module.exports = function() {
 					e.source._smallLoading.hide();
 				}
 			});
+			
+			var deleteImage = Ti.UI.createView({
+				width:23,
+				height:23,
+				top:5,
+				right:0,
+				borderRadius:10,
+				backgroundColor:'#FFF',
+				borderColor:'#000',
+				borderWidth:2,
+				opacity:0,
+				_x:i,
+				_id:data[i]._id
+			});
+			deleteImage.add(Ti.UI.createImageView({image:'images/delete.png', _x:i, _id:data[i]._id}));
+			deleteImage.addEventListener('click', function(e) {
+				if (images[y][e.source._x]._smallView.opacity > 0.4) {
+					var hide = Ti.UI.createAnimation({opacity:0.4});
+					images[y][e.source._x]._smallView.animate(hide);
+					hide.addEventListener('complete', function() {
+						images[y][e.source._x]._smallView.opacity = 0.4;
+					});
+					deletingImage(e.source._id, 0)
+				} else {
+					var show = Ti.UI.createAnimation({opacity:1});
+					images[y][e.source._x]._smallView.animate(show);
+					show.addEventListener('complete', function() {
+						images[y][e.source._x]._smallView.opacity = 1;
+					});
+					deletingImage(e.source._id, 1)
+				}
+			});
+			smallView.add(deleteImage);
+			img._deleteImage = deleteImage;
 			
 			aux.push(img);
 
