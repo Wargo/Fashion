@@ -41,7 +41,7 @@ function content() {
 	});
 	win.add(message);
 	message.add(Ti.UI.createLabel({top:25,font:{fontSize:13},text:L('swipe_text'), color:'#FFF'}));
-	var appear = Ti.UI.createAnimation({opacity:0.7, delay:1000});
+	var appear = Ti.UI.createAnimation({opacity:0.7, delay:100});
 	appear.addEventListener('complete', function() {
 		message.animate({opacity:0, delay:3000});
 	});

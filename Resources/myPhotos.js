@@ -48,18 +48,21 @@ module.exports = function() {
 	
 	var deletingImage = require('bbdd/deleteMyImage');
 	
-	function f_editing() {
+	function f_editing(newY) {
 		if (!canEdit) {
 			return;
 		}
 		
 		y = scrollableView.currentPage;
 		
+		if (newY == null) {
+			newY = y;
+		}
+		
 		if (editing) {
-			for (x in images[y]) {
-				images[y][x].animate({transform:tr, duration:100})
-				//images[y][x]._smallView.remove(images[y][x]._deleteImage);
-				images[y][x]._deleteImage.opacity = 0;
+			for (x in images[newY]) {
+				images[newY][x].animate({transform:tr, duration:100})
+				images[newY][x]._deleteImage.opacity = 0;
 			}
 			editing = false;
 			return;
@@ -143,12 +146,7 @@ module.exports = function() {
 	
 	scrollableView.addEventListener('scroll', function() {
 		if (editing) {
-			//var y = scrollableView.currentPage;
-			for (x in images[y]) {
-				images[y][x].animate({transform:tr, duration:1})
-				images[y][x]._smallView.remove(images[y][x]._deleteImage);
-			}
-			editing = false;
+			f_editing(y);
 		}
 	});
 	
@@ -261,9 +259,9 @@ module.exports = function() {
 				borderWidth:2,
 				opacity:0,
 				_x:i,
-				_id:data[i]._id
+				_id:data[i].id
 			});
-			deleteImage.add(Ti.UI.createImageView({image:'images/delete.png', _x:i, _id:data[i]._id}));
+			deleteImage.add(Ti.UI.createImageView({image:'images/delete.png', _x:i, _id:data[i].id}));
 			deleteImage.addEventListener('click', function(e) {
 				if (images[y][e.source._x]._smallView.opacity > 0.4) {
 					var hide = Ti.UI.createAnimation({opacity:0.4});
