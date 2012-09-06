@@ -45,6 +45,9 @@ module.exports = function() {
 	editButton.addEventListener('click', function() {
 		f_editing();
 	});
+	
+	var deletingImage = require('bbdd/deleteMyImage');
+	
 	function f_editing() {
 		if (!canEdit) {
 			return;
@@ -86,12 +89,19 @@ module.exports = function() {
 			});
 			deleteImage.add(Ti.UI.createImageView({image:'images/delete.png', _x:x, _id:images[y][x]._id}));
 			deleteImage.addEventListener('click', function(e) {
-				var deletingImage = require('bbdd/deleteMyImage');
 				if (images[y][e.source._x]._smallView.opacity > 0.4) {
-					images[y][e.source._x]._smallView.animate({opacity:0.4});
+					var hide = Ti.UI.createAnimation({opacity:0.4});
+					images[y][e.source._x]._smallView.animate(hide);
+					hide.addEventListener('complete', function() {
+						images[y][e.source._x]._smallView.opacity = 0.4;
+					});
 					deletingImage(e.source._id, 0)
 				} else {
-					images[y][e.source._x]._smallView.animate({opacity:1});
+					var show = Ti.UI.createAnimation({opacity:1});
+					images[y][e.source._x]._smallView.animate(show);
+					show.addEventListener('complete', function() {
+						images[y][e.source._x]._smallView.opacity = 1;
+					});
 					deletingImage(e.source._id, 1)
 				}
 			});
