@@ -144,6 +144,13 @@ module.exports = function() {
 		top:0,
 		zIndex:1000
 	});
+	setTimeout(function() {
+		header.setShadow({
+			shadowRadius:5,
+			shadowOpacity:0.5,
+			shadowOffset:{x:0, y:5}
+		});
+	}, 100);
 	header.add(Ti.UI.createLabel({text:L('title_my_photos')}));
 	header.add(backButton);
 	header.add(editButton);

@@ -70,6 +70,13 @@ var headerConfig = Ti.UI.createView({
 });
 headerConfig.add(Ti.UI.createLabel({text:L('title_options_page')}));
 win.add(headerConfig);
+setTimeout(function() {
+	headerConfig.setShadow({
+		shadowRadius:5,
+		shadowOpacity:0.5,
+		shadowOffset:{x:0, y:5}
+	});
+}, 100);
 
 header = showHeader();
 image = content();

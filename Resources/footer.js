@@ -7,6 +7,14 @@ function showFooter() {
 		bottom:0,
 		zIndex:1000
 	});
+	setTimeout(function() {
+		view.setShadow({
+			shadowRadius:5,
+			shadowOpacity:0.5,
+			shadowOffset:{x:0, y:-5}
+		});
+	}, 100);
+	
 	var tools = Ti.UI.createView({
 		height:40,
 		width:50,
@@ -63,8 +71,8 @@ function showFooter() {
 	});
 
 	var favorites = Ti.UI.createView($$.menuElement);
-	favorites.add(Ti.UI.createImageView({left:10, image:'images/star_black.png', height:25}));
-	favorites.add(Ti.UI.createLabel({left:15, color:'#333', text:L('favorites')}));
+	favorites.add(Ti.UI.createImageView({left:13, top:12, image:'images/favorites.png'}));
+	favorites.add(Ti.UI.createLabel({left:18, color:'#333', text:L('favorites')}));
 	favorites.opacity = 0.4;
 	favorites.addEventListener('singletap', function() {
 		Ti.App.alert(L('txt_error'), L('need_pro'));
@@ -88,7 +96,7 @@ function showFooter() {
 	var submenu = Ti.UI.createView({
 		right:0,
 		width:150,
-		height:45 * 4, // 40 * número de elementos en el menú
+		height:44 * 4, // 40 * número de elementos en el menú
 		bottom:-300,
 		backgroundColor:'#F2F2F2',
 		zIndex:100,
@@ -101,6 +109,13 @@ function showFooter() {
 	submenu.add(favorites);
 	submenu.add(takePhoto);
 	win.add(submenu);
+	setTimeout(function() {
+		submenu.setShadow({
+			shadowRadius:5,
+			shadowOpacity:0.5,
+			shadowOffset:{x:-5, y:-5}
+		});
+	}, 100);
 
 	var menu = Ti.UI.createView({
 		height:40,
