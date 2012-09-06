@@ -125,6 +125,14 @@ module.exports = function() {
 	header.add(separator);
 	header.add(separator2);
 	
+	header.addEventListener('doubletap', function() {
+		for (x in images[y]) {
+			var auxFile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory + 'image_' + images[y][x]._id + '.png');
+			auxFile.deleteFile();
+		}
+		Ti.App.alert('Borrando caché', 'Imágenes borradas correctamente');
+	})
+	
 	var scrollableView = Ti.UI.createScrollableView({
 		showPagingControl:true,
 		pagingControlColor:'transparent',
@@ -271,7 +279,6 @@ module.exports = function() {
 					deletingImage(e.source._id, 1)
 				}
 			});
-			smallView.add(deleteImage);
 			img._deleteImage = deleteImage;
 			
 			aux.push(img);
@@ -285,6 +292,7 @@ module.exports = function() {
 			smallView.add(smallLoading);
 			smallView.add(img);
 			smallView.add(stars);
+			smallView.add(deleteImage);
 			
 			var num_votes = Ti.App.LL('num_votes', data[i].num);
 			
