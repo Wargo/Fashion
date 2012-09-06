@@ -204,8 +204,8 @@ module.exports = function() {
 
 			var smallLoading = Ti.UI.createActivityIndicator();
 			smallLoading.show();
-
-			var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'image_' + data[i].id);
+			
+			var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory + 'image_' + data[i].id + '.png');
 			if (file.exists()) {
 				var img = Ti.UI.createImageView({
 					top:0,
@@ -224,7 +224,8 @@ module.exports = function() {
 					_firstLoad:true,
 					_smallLoading:smallLoading,
 					_id:data[i].id,
-					_i:i
+					_i:i,
+					_file:file
 				});
 			}
 			
@@ -262,7 +263,9 @@ module.exports = function() {
 					});
 					e.source.image = thumb;
 					e.source._firstLoad = false;
-					file.write(thumb);
+					if (typeof e.source._file != 'undefined') {
+						e.source._file.write(thumb);
+					}
 				} else {
 					e.source.animate({opacity:1});
 					e.source._smallLoading.hide();
